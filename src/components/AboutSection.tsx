@@ -30,7 +30,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({ aboutText, passionText, ski
     <div className="bg-zinc-900 rounded-lg p-8 shadow-[0_24px_80px_hsla(0,0%,0%,0.25)] border border-[hsl(0,0%,22%)]">
       {/* About Me Section */}
       <div className="mb-10">
-        <h2 className="text-xl font-bold text-white mb-4 border-b border-yellow-500 pb-2 inline-block">About Me</h2>
         <p className="text-zinc-400 mb-4">{aboutText}</p>
         <p className="text-zinc-400">{passionText}</p>
       </div>
