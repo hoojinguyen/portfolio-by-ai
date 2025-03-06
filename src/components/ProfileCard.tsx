@@ -22,7 +22,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   linkedin
 }) => {
   return (
-    <div className="bg-zinc-900 rounded-lg p-6 flex flex-col items-center shadow-[0_24px_80px_hsla(0,0%,0%,0.25)] w-full max-w-xs border border-[hsl(0,0%,22%)]">
+    <div className="bg-zinc-900 rounded-lg p-6 flex flex-col items-center shadow-[0_24px_80px_hsla(0,0%,0%,0.25)] w-full max-w-xs border border-[hsl(0,0%,22%)] h-fit-content sticky top-10">
       <div className="relative mb-4">
         <div className="w-32 h-32 rounded-2xl overflow-hidden bg-zinc-800 relative">
           {avatarUrl ? (
