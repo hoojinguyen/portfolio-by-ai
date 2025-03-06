@@ -1,6 +1,21 @@
 {
   "skills": [
     {
+      "name": "Next.js",
+      "iconType": "SiNextdotjs",
+      "color": "bg-zinc-800/50"
+    },
+    {
+      "name": "Nuxt.js",
+      "iconType": "SiNuxtdotjs",
+      "color": "bg-green-500/20"
+    },
+    {
+      "name": "Vue",
+      "iconType": "FaVuejs",
+      "color": "bg-green-500/20"
+    },
+    {
       "name": "React",
       "iconType": "FaReact",
       "color": "bg-blue-500/20"
@@ -21,24 +36,19 @@
       "color": "bg-yellow-500/20"
     },
     {
-      "name": "Python",
-      "iconType": "FaPython",
-      "color": "bg-blue-400/20"
-    },
-    {
-      "name": "AWS",
-      "iconType": "FaAws",
-      "color": "bg-orange-400/20"
-    },
-    {
       "name": "Docker",
       "iconType": "FaDocker",
       "color": "bg-blue-500/20"
     },
     {
-      "name": "MongoDB",
-      "iconType": "SiMongodb",
-      "color": "bg-green-600/20"
+      "name": "Kubernetes",
+      "iconType": "SiKubernetes",
+      "color": "bg-blue-600/20"
+    },
+    {
+      "name": "PostgreSQL",
+      "iconType": "SiPostgresql",
+      "color": "bg-blue-400/20"
     },
     {
       "name": "GraphQL",
@@ -46,19 +56,9 @@
       "color": "bg-pink-500/20"
     },
     {
-      "name": "Redux",
-      "iconType": "SiRedux",
-      "color": "bg-purple-500/20"
-    },
-    {
-      "name": "Git",
-      "iconType": "FaGitAlt",
-      "color": "bg-red-500/20"
-    },
-    {
-      "name": "TailwindCSS",
-      "iconType": "SiTailwindcss",
-      "color": "bg-cyan-500/20"
+      "name": "Firebase",
+      "iconType": "SiFirebase",
+      "color": "bg-yellow-600/20"
     }
   ]
 }

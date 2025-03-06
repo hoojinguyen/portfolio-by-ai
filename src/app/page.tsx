@@ -6,9 +6,9 @@ import AboutSection from '@/components/AboutSection';
 import ResumeSection from '@/components/ResumeSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import Navigation from '@/components/Navigation';
-import { FaReact, FaNodeJs, FaJsSquare, FaPython, FaAws, FaDocker, FaGitAlt } from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaJsSquare, FaPython, FaAws, FaDocker, FaGitAlt, FaVuejs } from 'react-icons/fa';
 import ContactSection from '@/components/ContactSection';
-import { SiTypescript, SiTailwindcss, SiMongodb, SiGraphql, SiRedux } from 'react-icons/si';
+import { SiTypescript, SiTailwindcss, SiMongodb, SiGraphql, SiRedux, SiNextdotjs, SiNuxtdotjs, SiKubernetes, SiPostgresql, SiFirebase } from 'react-icons/si';
 
 // Import JSON data
 import profileData from '@/config/profile.json';
@@ -32,7 +32,13 @@ export default function Home() {
     SiTailwindcss: <SiTailwindcss className="text-3xl" />,
     SiMongodb: <SiMongodb className="text-3xl" />,
     SiGraphql: <SiGraphql className="text-3xl" />,
-    SiRedux: <SiRedux className="text-3xl" />
+    SiRedux: <SiRedux className="text-3xl" />,
+    SiNextdotjs: <SiNextdotjs className="text-3xl" />,
+    SiNuxtdotjs: <SiNuxtdotjs className="text-3xl" />,
+    FaVuejs: <FaVuejs className="text-3xl" />,
+    SiKubernetes: <SiKubernetes className="text-3xl" />,
+    SiPostgresql: <SiPostgresql className="text-3xl" />,
+    SiFirebase: <SiFirebase className="text-3xl" />
   };
 
   // Map skill data with icons

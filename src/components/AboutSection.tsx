@@ -15,19 +15,9 @@ interface AboutSectionProps {
 const AboutSection: React.FC<AboutSectionProps> = ({ aboutText, passionText, skills }) => {
   const services = [
     {
-      icon: <FaMobile className="text-2xl text-blue-400" />,
-      title: 'Mobile Apps',
-      description: 'Expert in development of applications for Android and iOS with native feel.'
-    },
-    {
       icon: <FaCode className="text-2xl text-yellow-500" />,
       title: 'Web Development',
       description: 'Creating attractive websites and web applications with modern technologies.'
-    },
-    {
-      icon: <FaPalette className="text-2xl text-purple-500" />,
-      title: 'UI/UX Design',
-      description: 'The best modern design created at a professional level with great attention to detail.'
     },
     {
       icon: <FaChartLine className="text-2xl text-orange-500" />,

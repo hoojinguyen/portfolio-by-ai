@@ -1,54 +1,52 @@
 {
   "education": [
     {
-      "school": "Nihareeka College Of Management And Information Technology",
-      "degree": "Bachelor of Science in Computer Science and information Technology (B.Sc. CSIT)",
-      "period": "2017 — 2021",
-      "logo": "/images/nihareeka-logo.png"
-    },
-    {
-      "school": "Greenland International College",
-      "degree": "+2 Science",
-      "period": "2015 — 2017",
-      "logo": "/images/greenland-logo.png"
+      "school": "University of Information Technology - Vietnam National University HCMC",
+      "degree": "Software Engineering",
+      "period": "2016 — 2021",
+      "logo": "/images/uit-logo.png",
+      "achievements": [
+        "Learn the professional software development process",
+        "Basic knowledge of OOP, databases, algorithms",
+        "Take on the role of leader in group projects",
+        "GPA: 7.79/10"
+      ]
     }
   ],
   "experience": [
     {
-      "position": "Mid-Level Flutter Developer",
-      "company": "Tokma Technologies",
-      "location": "Kathmandu, Nepal",
-      "period": "Aug, 2024 — Present • 8 mos",
-      "logo": "/images/tokma-logo.png",
+      "position": "Software Engineer",
+      "company": "NAB Innovation Centre Vietnam",
+      "location": "District 4, Ho Chi Minh city",
+      "period": "07/2022 — Present",
+      "logo": "/images/nab-logo.png",
       "responsibilities": [
-        "Developed new features and implemented UI designs into code using Flutter.",
-        "Designed and created custom e-form features including scrolling features and data entries.",
-        "Integrated Google and Facebook sign-in for user authentication.",
-        "Designed dynamic functionalities using the BLOC design pattern.",
-        "Integrated APIs for seamless data communication and backend functionality.",
-        "Implemented payment gateway integration like Khalti for secure transactions.",
-        "Collaborated with other developers and backend team to deliver features.",
-        "Participated in team meetings to discuss new features and project updates.",
-        "Ensured smooth functionality and user-friendly experiences throughout the app.",
-        "Performed code review and deployed the app in Playstore and Appstore."
+        "Serving as a member of a banking company"
       ]
     },
     {
-      "position": "Flutter Developer",
-      "company": "Infancer Technology",
-      "location": "Kathmandu, Nepal",
-      "period": "Oct, 2022 — Aug, 2024 • 1 yr, 11 mos",
-      "logo": "/images/infancer-logo.png",
+      "position": "Web Developer",
+      "company": "BrickMate Group",
+      "location": "District 10, Ho Chi Minh city",
+      "period": "08/2021 — 06/2022",
+      "logo": "/images/brickmate-logo.png",
       "responsibilities": [
-        "Developed new features and transformed UI designs into fully functional user interfaces.",
-        "Integrated payment solution like eSewa, for secure and seamless transactions.",
-        "Optimized application performance to ensure a smooth and engaging user experience.",
-        "Supported other team members initiatives by developing solutions to common problems and sharing those solutions.",
-        "Identified and resolved bugs, improving app stability and performance.",
-        "Wrote clean, maintainable, and testable code following best practices.",
-        "Utilization of latest version of support libraries to ensure backend compatibility.",
-        "Integrated payment solution like eSewa, for secure and seamless transactions.",
-        "Collaborated with backend developers, designers, and cross-functional teams to deliver scalable, high-quality solutions."
+        "Developed numerous e-commerce and medical applications for Korean clients",
+        "Analyzed customer requirements and proposed appropriate solutions",
+        "Migrated legacy systems to new platforms using various cutting-edge technologies"
+      ]
+    },
+    {
+      "position": "Web Developer",
+      "company": "TVN Group",
+      "location": "District 9, Ho Chi Minh city",
+      "period": "11/2019 — 05/2021",
+      "logo": "/images/tvn-logo.png",
+      "responsibilities": [
+        "Developed UI for client-side and admin-side using Vue.js and Nuxt.js",
+        "Contributed to API development using Node.js, GraphQL, PostgreSQL, and Elasticsearch",
+        "Integrated systems with Facebook Pixel, Google Tag Manager, Klaviyo, and ShopMessage",
+        "Analyzed user needs and proposed appropriate solutions"
       ]
     }
   ]
