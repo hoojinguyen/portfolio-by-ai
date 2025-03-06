@@ -212,8 +212,6 @@ export default function Home() {
         return <ResumeSection education={educationData} experience={experienceData} />;
       case 'portfolio':
         return <PortfolioSection projects={portfolioData} />;
-      case 'blog':
-        return <div>Blog Content</div>;
       case 'contact':
         return <ContactSection location={profileData.location} />;
       default:

@@ -12,7 +12,6 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
     { name: "About", id: "about" },
     { name: "Resume", id: "resume" },
     { name: "Portfolio", id: "portfolio" },
-    { name: "Blog", id: "blog" },
     { name: "Contact", id: "contact" },
   ];
 
