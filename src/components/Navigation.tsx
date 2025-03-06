@@ -10,7 +10,7 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
-  const [previousTab, setPreviousTab] = useState<string>(activeTab);
+  const [, setPreviousTab] = useState<string>(activeTab);
 
   useEffect(() => {
     setPreviousTab(activeTab);

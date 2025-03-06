@@ -1,10 +1,6 @@
-import React from 'react';
+import React from "react";
 
-interface ContactSectionProps {
-  location: string;
-}
-
-const ContactSection: React.FC<ContactSectionProps> = ({ location }) => {
+const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission logic here
@@ -13,8 +9,10 @@ const ContactSection: React.FC<ContactSectionProps> = ({ location }) => {
   return (
     <div className="bg-zinc-900 rounded-lg p-8 shadow-[0_24px_80px_hsla(0,0%,0%,0.25)] border border-[hsl(0,0%,22%)]">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold text-white mb-8 text-center">Get in Touch</h2>
-        
+        <h2 className="text-2xl font-bold text-white mb-8 text-center">
+          Get in Touch
+        </h2>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="group">

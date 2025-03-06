@@ -1,23 +1,43 @@
 "use client";
 
-import React, { useState } from 'react';
-import ProfileCard from '@/components/ProfileCard';
-import AboutSection from '@/components/AboutSection';
-import ResumeSection from '@/components/ResumeSection';
-import PortfolioSection from '@/components/PortfolioSection';
-import Navigation from '@/components/Navigation';
-import { FaReact, FaNodeJs, FaJsSquare, FaPython, FaAws, FaDocker, FaGitAlt, FaVuejs } from 'react-icons/fa';
-import ContactSection from '@/components/ContactSection';
-import { SiTypescript, SiTailwindcss, SiMongodb, SiGraphql, SiRedux, SiNextdotjs, SiNuxtdotjs, SiKubernetes, SiPostgresql, SiFirebase } from 'react-icons/si';
+import React, { useState } from "react";
+import ProfileCard from "@/components/ProfileCard";
+import AboutSection from "@/components/AboutSection";
+import ResumeSection from "@/components/ResumeSection";
+import PortfolioSection from "@/components/PortfolioSection";
+import Navigation from "@/components/Navigation";
+import {
+  FaReact,
+  FaNodeJs,
+  FaJsSquare,
+  FaPython,
+  FaAws,
+  FaDocker,
+  FaGitAlt,
+  FaVuejs,
+} from "react-icons/fa";
+import ContactSection from "@/components/ContactSection";
+import {
+  SiTypescript,
+  SiTailwindcss,
+  SiMongodb,
+  SiGraphql,
+  SiRedux,
+  SiNextdotjs,
+  SiNuxtdotjs,
+  SiKubernetes,
+  SiPostgresql,
+  SiFirebase,
+} from "react-icons/si";
 
 // Import JSON data
-import profileData from '@/config/profile.json';
-import skillsData from '@/config/skills.json';
-import portfolioData from '@/config/portfolio.json';
-import resumeData from '@/config/resume.json';
+import profileData from "@/config/profile.json";
+import skillsData from "@/config/skills.json";
+import portfolioData from "@/config/portfolio.json";
+import resumeData from "@/config/resume.json";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('about');
+  const [activeTab, setActiveTab] = useState("about");
 
   // Map skill icons to their components
   const iconComponents: { [key: string]: React.ReactNode } = {
@@ -38,33 +58,38 @@ export default function Home() {
     FaVuejs: <FaVuejs className="text-3xl" />,
     SiKubernetes: <SiKubernetes className="text-3xl" />,
     SiPostgresql: <SiPostgresql className="text-3xl" />,
-    SiFirebase: <SiFirebase className="text-3xl" />
+    SiFirebase: <SiFirebase className="text-3xl" />,
   };
 
   // Map skill data with icons
-  const skills = skillsData.skills.map(skill => ({
+  const skills = skillsData.skills.map((skill) => ({
     ...skill,
-    icon: iconComponents[skill.iconType]
+    icon: iconComponents[skill.iconType],
   }));
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'about':
+      case "about":
         return (
           <div className="space-y-8">
-            <AboutSection 
-              aboutText={profileData.aboutText} 
-              passionText={profileData.passionText} 
-              skills={skills} 
+            <AboutSection
+              aboutText={profileData.aboutText}
+              passionText={profileData.passionText}
+              skills={skills}
             />
           </div>
         );
-      case 'resume':
-        return <ResumeSection education={resumeData.education} experience={resumeData.experience} />;
-      case 'portfolio':
+      case "resume":
+        return (
+          <ResumeSection
+            education={resumeData.education}
+            experience={resumeData.experience}
+          />
+        );
+      case "portfolio":
         return <PortfolioSection projects={portfolioData.projects} />;
-      case 'contact':
-        return <ContactSection location={profileData.location} />;
+      case "contact":
+        return <ContactSection />;
       default:
         return null;
     }
@@ -78,7 +103,7 @@ export default function Home() {
           <div className="flex justify-center lg:justify-start">
             <ProfileCard {...profileData} />
           </div>
-          
+
           {/* Right Column - Content */}
           <div className="space-y-8">
             <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
