@@ -113,7 +113,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white py-10 px-4 md:px-10">
       <div className="max-w-7xl mx-auto">
-        <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
           {/* Left Column - Profile Card */}
           <div className="flex justify-center lg:justify-start">
@@ -122,6 +121,7 @@ export default function Home() {
           
           {/* Right Column - Content */}
           <div className="space-y-8">
+            <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
             {renderContent()}
           </div>
         </div>
