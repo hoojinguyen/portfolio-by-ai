@@ -4,8 +4,10 @@ import React, { useState } from 'react';
 import ProfileCard from '@/components/ProfileCard';
 import AboutSection from '@/components/AboutSection';
 import ResumeSection from '@/components/ResumeSection';
+import PortfolioSection from '@/components/PortfolioSection';
 import Navigation from '@/components/Navigation';
 import { FaReact, FaNodeJs, FaJsSquare, FaPython, FaAws, FaDocker, FaGitAlt } from 'react-icons/fa';
+import ContactSection from '@/components/ContactSection';
 import { SiTypescript, SiTailwindcss, SiMongodb, SiGraphql, SiRedux } from 'react-icons/si';
 
 export default function Home() {
@@ -146,6 +148,58 @@ export default function Home() {
     },
   ];
 
+  // Portfolio data
+  const portfolioData = [
+    {
+      id: 1,
+      title: 'GitHub Users Search App',
+      category: 'Web development',
+      image: '/images/github-users.png',
+      demoUrl: 'https://github-users-search.demo.com',
+      sourceUrl: 'https://github.com/username/github-users'
+    },
+    {
+      id: 2,
+      title: 'Car Zone',
+      category: 'Web development',
+      image: '/images/car-zone.png',
+      demoUrl: 'https://car-zone.demo.com',
+      sourceUrl: 'https://github.com/username/car-zone'
+    },
+    {
+      id: 3,
+      title: 'Movfix',
+      category: 'Web development',
+      image: '/images/movfix.png',
+      demoUrl: 'https://movfix.demo.com',
+      sourceUrl: 'https://github.com/username/movfix'
+    },
+    {
+      id: 4,
+      title: 'Fitness Zone',
+      category: 'Web development',
+      image: '/images/fitness-zone.png',
+      demoUrl: 'https://fitness-zone.demo.com',
+      sourceUrl: 'https://github.com/username/fitness-zone'
+    },
+    {
+      id: 5,
+      title: 'E-Commerce',
+      category: 'Web development',
+      image: '/images/ecommerce.png',
+      demoUrl: 'https://ecommerce.demo.com',
+      sourceUrl: 'https://github.com/username/ecommerce'
+    },
+    {
+      id: 6,
+      title: 'Netflix Clone',
+      category: 'Web development',
+      image: '/images/netflix-clone.png',
+      demoUrl: 'https://netflix-clone.demo.com',
+      sourceUrl: 'https://github.com/username/netflix-clone'
+    }
+  ];
+
   const renderContent = () => {
     switch (activeTab) {
       case 'about':
@@ -157,11 +211,11 @@ export default function Home() {
       case 'resume':
         return <ResumeSection education={educationData} experience={experienceData} />;
       case 'portfolio':
-        return <div>Portfolio Content</div>;
+        return <PortfolioSection projects={portfolioData} />;
       case 'blog':
         return <div>Blog Content</div>;
       case 'contact':
-        return <div>Contact Content</div>;
+        return <ContactSection location={profileData.location} />;
       default:
         return null;
     }
