@@ -10,6 +10,7 @@ interface Education {
 }
 
 interface Experience {
+  link?: string;
   position: string;
   company: string;
   location: string;
@@ -90,7 +91,18 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({ education, experience }) 
                     <div className="flex justify-between items-start mb-2">
                       <div>
                         <h3 className="text-lg font-semibold text-white">{exp.position}</h3>
-                        <p className="text-zinc-400">{exp.company}</p>
+                        {exp?.link ? (
+                          <a
+                            href={exp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-zinc-400 hover:text-yellow-500 transition-colors duration-300"
+                          >
+                            {exp.company}
+                          </a>
+                        ) : (
+                          <p className="text-zinc-400">{exp.company}</p>
+                        )}
                       </div>
                       <div className="text-right">
                         <p className="text-sm text-yellow-500/80">{exp.period}</p>

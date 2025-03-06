@@ -12,15 +12,15 @@
       "id": 2,
       "title": "TVN Ecommerce",
       "category": "Web Development",
-      "image": "/images/tvn-ecommerce.png",
+      "image": "/images/tvn-ecommerce.webp",
       "description": "An e-commerce platform similar to Shopify with custom functionalities for sales teams. Built with Vue, Nuxt.js, GraphQL, Node.js, and PostgreSQL."
     },
     {
       "id": 3,
-      "title": "Hotel Manager",
+      "title": "Travelux",
       "category": "Web Development",
-      "image": "/images/hotel-manager.png",
-      "description": "A web application for hotel room booking and management. Built with HTML5, CSS3, Javascript, jQuery, PHP, and MySQL."
+      "image": "/images/travelux.png",
+      "description": "A mobile application for booking room when traveling. Built with React Native and Firebase."
     }
   ]
 }

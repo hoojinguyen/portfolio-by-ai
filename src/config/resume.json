@@ -17,37 +17,38 @@
     {
       "position": "Software Engineer",
       "company": "NAB Innovation Centre Vietnam",
-      "location": "District 4, Ho Chi Minh city",
+      "location": "Thu Thiem Ward, Thu Duc City, Ho Chi Minh",
       "period": "07/2022 — Present",
-      "logo": "/images/nab-logo.png",
-      "responsibilities": [
-        "Serving as a member of a banking company"
-      ]
+      "logo": "/images/nab-logo.jpeg",
+      "responsibilities": ["Serving as a member of a banking company"],
+      "link": "https://www.linkedin.com/company/nabvietnam"
     },
     {
       "position": "Web Developer",
       "company": "BrickMate Group",
       "location": "District 10, Ho Chi Minh city",
       "period": "08/2021 — 06/2022",
-      "logo": "/images/brickmate-logo.png",
+      "logo": "/images/brickmate-logo.jpeg",
       "responsibilities": [
         "Developed numerous e-commerce and medical applications for Korean clients",
         "Analyzed customer requirements and proposed appropriate solutions",
         "Migrated legacy systems to new platforms using various cutting-edge technologies"
-      ]
+      ],
+      "link": "https://www.linkedin.com/company/brickmate-group-vietnam/"
     },
     {
       "position": "Web Developer",
       "company": "TVN Group",
       "location": "District 9, Ho Chi Minh city",
       "period": "11/2019 — 05/2021",
-      "logo": "/images/tvn-logo.png",
+      "logo": "/images/tvn-logo.jpeg",
       "responsibilities": [
         "Developed UI for client-side and admin-side using Vue.js and Nuxt.js",
         "Contributed to API development using Node.js, GraphQL, PostgreSQL, and Elasticsearch",
         "Integrated systems with Facebook Pixel, Google Tag Manager, Klaviyo, and ShopMessage",
         "Analyzed user needs and proposed appropriate solutions"
-      ]
+      ],
+      "link": ""
     }
   ]
 }
