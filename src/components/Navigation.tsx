@@ -34,31 +34,31 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
       {/* Background glow effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-yellow-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 dark:from-purple-500/5 dark:via-pink-500/5 dark:to-yellow-500/5"></div>
 
-      {/* Active tab background glow */}
-      <motion.div
-        className="absolute h-full top-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-yellow-500/20 rounded-lg dark:from-purple-500/10 dark:via-pink-500/10 dark:to-yellow-500/10"
-        layoutId="tabBackground"
-        initial={false}
-        animate={{
-          width: "25%",
-          x: navItems.findIndex((item) => item.id === activeTab) * 25 + "%",
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      />
+      {/* Active tab background glow - Mobile responsive version */}
+      {activeTab && (
+        <motion.div
+          className="absolute h-full top-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-yellow-500/20 rounded-lg dark:from-purple-500/10 dark:via-pink-500/10 dark:to-yellow-500/10"
+          layoutId="tabBackground"
+          initial={false}
+          // Use layout animations instead of fixed percentages for better mobile support
+          layout
+          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        />
+      )}
 
-      <div className="flex justify-between items-center relative z-10">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-start md:items-center gap-4 md:gap-0 relative z-10">
         <motion.h1
           key={activeTab}
           initial={{ y: 10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -10, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-transparent bg-clip-text animate-gradient"
+          className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-transparent bg-clip-text animate-gradient"
         >
           {navItems.find((item) => item.id === activeTab)?.title || "About Me"}
         </motion.h1>
 
-        <ul className="flex gap-6 relative">
+        <ul className="flex flex-wrap gap-3 md:gap-6 relative w-full md:w-auto">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             const isHovered = hoveredTab === item.id;
@@ -69,7 +69,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
                   onClick={() => handleTabChange(item.id)}
                   onMouseEnter={() => setHoveredTab(item.id)}
                   onMouseLeave={() => setHoveredTab(null)}
-                  className={`relative py-2 px-3 text-sm font-medium transition-all duration-300 rounded-md flex items-center gap-2 ${
+                  className={`relative py-2 px-2 md:px-3 text-xs md:text-sm font-medium transition-all duration-300 rounded-md flex items-center gap-1 md:gap-2 ${
                     isActive ? "text-white" : "text-zinc-400 hover:text-white"
                   }`}
                 >
