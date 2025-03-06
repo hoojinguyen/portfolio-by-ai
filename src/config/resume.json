@@ -1,0 +1,55 @@
+{
+  "education": [
+    {
+      "school": "Nihareeka College Of Management And Information Technology",
+      "degree": "Bachelor of Science in Computer Science and information Technology (B.Sc. CSIT)",
+      "period": "2017 — 2021",
+      "logo": "/images/nihareeka-logo.png"
+    },
+    {
+      "school": "Greenland International College",
+      "degree": "+2 Science",
+      "period": "2015 — 2017",
+      "logo": "/images/greenland-logo.png"
+    }
+  ],
+  "experience": [
+    {
+      "position": "Mid-Level Flutter Developer",
+      "company": "Tokma Technologies",
+      "location": "Kathmandu, Nepal",
+      "period": "Aug, 2024 — Present • 8 mos",
+      "logo": "/images/tokma-logo.png",
+      "responsibilities": [
+        "Developed new features and implemented UI designs into code using Flutter.",
+        "Designed and created custom e-form features including scrolling features and data entries.",
+        "Integrated Google and Facebook sign-in for user authentication.",
+        "Designed dynamic functionalities using the BLOC design pattern.",
+        "Integrated APIs for seamless data communication and backend functionality.",
+        "Implemented payment gateway integration like Khalti for secure transactions.",
+        "Collaborated with other developers and backend team to deliver features.",
+        "Participated in team meetings to discuss new features and project updates.",
+        "Ensured smooth functionality and user-friendly experiences throughout the app.",
+        "Performed code review and deployed the app in Playstore and Appstore."
+      ]
+    },
+    {
+      "position": "Flutter Developer",
+      "company": "Infancer Technology",
+      "location": "Kathmandu, Nepal",
+      "period": "Oct, 2022 — Aug, 2024 • 1 yr, 11 mos",
+      "logo": "/images/infancer-logo.png",
+      "responsibilities": [
+        "Developed new features and transformed UI designs into fully functional user interfaces.",
+        "Integrated payment solution like eSewa, for secure and seamless transactions.",
+        "Optimized application performance to ensure a smooth and engaging user experience.",
+        "Supported other team members initiatives by developing solutions to common problems and sharing those solutions.",
+        "Identified and resolved bugs, improving app stability and performance.",
+        "Wrote clean, maintainable, and testable code following best practices.",
+        "Utilization of latest version of support libraries to ensure backend compatibility.",
+        "Integrated payment solution like eSewa, for secure and seamless transactions.",
+        "Collaborated with backend developers, designers, and cross-functional teams to deliver scalable, high-quality solutions."
+      ]
+    }
+  ]
+}

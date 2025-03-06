@@ -1,0 +1,52 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "GitHub Users Search App",
+      "category": "Web development",
+      "image": "/images/github-users.png",
+      "demoUrl": "https://github-users-search.demo.com",
+      "sourceUrl": "https://github.com/username/github-users"
+    },
+    {
+      "id": 2,
+      "title": "Car Zone",
+      "category": "Web development",
+      "image": "/images/car-zone.png",
+      "demoUrl": "https://car-zone.demo.com",
+      "sourceUrl": "https://github.com/username/car-zone"
+    },
+    {
+      "id": 3,
+      "title": "Movfix",
+      "category": "Web development",
+      "image": "/images/movfix.png",
+      "demoUrl": "https://movfix.demo.com",
+      "sourceUrl": "https://github.com/username/movfix"
+    },
+    {
+      "id": 4,
+      "title": "Fitness Zone",
+      "category": "Web development",
+      "image": "/images/fitness-zone.png",
+      "demoUrl": "https://fitness-zone.demo.com",
+      "sourceUrl": "https://github.com/username/fitness-zone"
+    },
+    {
+      "id": 5,
+      "title": "E-Commerce",
+      "category": "Web development",
+      "image": "/images/ecommerce.png",
+      "demoUrl": "https://ecommerce.demo.com",
+      "sourceUrl": "https://github.com/username/ecommerce"
+    },
+    {
+      "id": 6,
+      "title": "Netflix Clone",
+      "category": "Web development",
+      "image": "/images/netflix-clone.png",
+      "demoUrl": "https://netflix-clone.demo.com",
+      "sourceUrl": "https://github.com/username/netflix-clone"
+    }
+  ]
+}

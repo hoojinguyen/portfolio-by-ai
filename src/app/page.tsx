@@ -10,208 +10,53 @@ import { FaReact, FaNodeJs, FaJsSquare, FaPython, FaAws, FaDocker, FaGitAlt } fr
 import ContactSection from '@/components/ContactSection';
 import { SiTypescript, SiTailwindcss, SiMongodb, SiGraphql, SiRedux } from 'react-icons/si';
 
+// Import JSON data
+import profileData from '@/config/profile.json';
+import skillsData from '@/config/skills.json';
+import portfolioData from '@/config/portfolio.json';
+import resumeData from '@/config/resume.json';
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState('about');
 
-  // Profile data
-  const profileData = {
-    name: 'Aakash Rajpurohit',
-    title: 'Full-stack Developer',
-    avatarUrl: 'https://avatars.githubusercontent.com/u/1?v=4',
-    location: 'San Francisco, CA',
-    email: 'example@email.com',
-    github: 'https://github.com',
-    linkedin: 'https://linkedin.com',
+  // Map skill icons to their components
+  const iconComponents: { [key: string]: React.ReactNode } = {
+    FaReact: <FaReact className="text-3xl" />,
+    FaNodeJs: <FaNodeJs className="text-3xl" />,
+    FaJsSquare: <FaJsSquare className="text-3xl" />,
+    FaPython: <FaPython className="text-3xl" />,
+    FaAws: <FaAws className="text-3xl" />,
+    FaDocker: <FaDocker className="text-3xl" />,
+    FaGitAlt: <FaGitAlt className="text-3xl" />,
+    SiTypescript: <SiTypescript className="text-3xl" />,
+    SiTailwindcss: <SiTailwindcss className="text-3xl" />,
+    SiMongodb: <SiMongodb className="text-3xl" />,
+    SiGraphql: <SiGraphql className="text-3xl" />,
+    SiRedux: <SiRedux className="text-3xl" />
   };
 
-  // About section text
-  const aboutText = "I'm a full-stack developer with 5+ years of experience in web development and mobile app development. I specialize in JavaScript, React, Node.js, and modern web technologies.";
-  const passionText = "I enjoy working on complex problems and creating user-friendly solutions. My passion is to combine technology and design to create meaningful experiences that users love to interact with.";
-
-  // Resume data
-  const educationData = [
-    {
-      school: 'Nihareeka College Of Management And Information Technology',
-      degree: 'Bachelor of Science in Computer Science and information Technology (B.Sc. CSIT)',
-      period: '2017 — 2021',
-      logo: '/images/nihareeka-logo.png'
-    },
-    {
-      school: 'Greenland International College',
-      degree: '+2 Science',
-      period: '2015 — 2017',
-      logo: '/images/greenland-logo.png'
-    }
-  ];
-
-  const experienceData = [
-    {
-      position: 'Mid-Level Flutter Developer',
-      company: 'Tokma Technologies',
-      location: 'Kathmandu, Nepal',
-      period: 'Aug, 2024 — Present • 8 mos',
-      logo: '/images/tokma-logo.png',
-      responsibilities: [
-        'Developed new features and implemented UI designs into code using Flutter.',
-        'Designed and created custom e-form features including scrolling features and data entries.',
-        'Integrated Google and Facebook sign-in for user authentication.',
-        'Designed dynamic functionalities using the BLOC design pattern.',
-        'Integrated APIs for seamless data communication and backend functionality.',
-        'Implemented payment gateway integration like Khalti for secure transactions.',
-        'Collaborated with other developers and backend team to deliver features.',
-        'Participated in team meetings to discuss new features and project updates.',
-        'Ensured smooth functionality and user-friendly experiences throughout the app.',
-        'Performed code review and deployed the app in Playstore and Appstore.'
-      ]
-    },
-    {
-      position: 'Flutter Developer',
-      company: 'Infancer Technology',
-      location: 'Kathmandu, Nepal',
-      period: 'Oct, 2022 — Aug, 2024 • 1 yr, 11 mos',
-      logo: '/images/infancer-logo.png',
-      responsibilities: [
-        'Developed new features and transformed UI designs into fully functional user interfaces.',
-        'Integrated payment solution like eSewa, for secure and seamless transactions.',
-        'Optimized application performance to ensure a smooth and engaging user experience.',
-        'Supported other team members initiatives by developing solutions to common problems and sharing those solutions.',
-        'Identified and resolved bugs, improving app stability and performance.',
-        'Wrote clean, maintainable, and testable code following best practices.',
-        'Utilization of latest version of support libraries to ensure backend compatibility.',
-        'Integrated payment solution like eSewa, for secure and seamless transactions.',
-        'Collaborated with backend developers, designers, and cross-functional teams to deliver scalable, high-quality solutions.'
-      ]
-    }
-  ];
-
-  // Skills data
-  const skills = [
-    {
-      name: 'React',
-      icon: <FaReact className="text-3xl" />,
-      color: 'bg-blue-500/20'
-    },
-    {
-      name: 'Node.js',
-      icon: <FaNodeJs className="text-3xl" />,
-      color: 'bg-green-500/20'
-    },
-    {
-      name: 'TypeScript',
-      icon: <SiTypescript className="text-3xl" />,
-      color: 'bg-blue-600/20'
-    },
-    {
-      name: 'JavaScript',
-      icon: <FaJsSquare className="text-3xl" />,
-      color: 'bg-yellow-500/20'
-    },
-    {
-      name: 'Python',
-      icon: <FaPython className="text-3xl" />,
-      color: 'bg-blue-400/20'
-    },
-    {
-      name: 'AWS',
-      icon: <FaAws className="text-3xl" />,
-      color: 'bg-orange-400/20'
-    },
-    {
-      name: 'Docker',
-      icon: <FaDocker className="text-3xl" />,
-      color: 'bg-blue-500/20'
-    },
-    {
-      name: 'MongoDB',
-      icon: <SiMongodb className="text-3xl" />,
-      color: 'bg-green-600/20'
-    },
-    {
-      name: 'GraphQL',
-      icon: <SiGraphql className="text-3xl" />,
-      color: 'bg-pink-500/20'
-    },
-    {
-      name: 'Redux',
-      icon: <SiRedux className="text-3xl" />,
-      color: 'bg-purple-500/20'
-    },
-    {
-      name: 'Git',
-      icon: <FaGitAlt className="text-3xl" />,
-      color: 'bg-red-500/20'
-    },
-    {
-      name: 'TailwindCSS',
-      icon: <SiTailwindcss className="text-3xl" />,
-      color: 'bg-cyan-500/20'
-    },
-  ];
-
-  // Portfolio data
-  const portfolioData = [
-    {
-      id: 1,
-      title: 'GitHub Users Search App',
-      category: 'Web development',
-      image: '/images/github-users.png',
-      demoUrl: 'https://github-users-search.demo.com',
-      sourceUrl: 'https://github.com/username/github-users'
-    },
-    {
-      id: 2,
-      title: 'Car Zone',
-      category: 'Web development',
-      image: '/images/car-zone.png',
-      demoUrl: 'https://car-zone.demo.com',
-      sourceUrl: 'https://github.com/username/car-zone'
-    },
-    {
-      id: 3,
-      title: 'Movfix',
-      category: 'Web development',
-      image: '/images/movfix.png',
-      demoUrl: 'https://movfix.demo.com',
-      sourceUrl: 'https://github.com/username/movfix'
-    },
-    {
-      id: 4,
-      title: 'Fitness Zone',
-      category: 'Web development',
-      image: '/images/fitness-zone.png',
-      demoUrl: 'https://fitness-zone.demo.com',
-      sourceUrl: 'https://github.com/username/fitness-zone'
-    },
-    {
-      id: 5,
-      title: 'E-Commerce',
-      category: 'Web development',
-      image: '/images/ecommerce.png',
-      demoUrl: 'https://ecommerce.demo.com',
-      sourceUrl: 'https://github.com/username/ecommerce'
-    },
-    {
-      id: 6,
-      title: 'Netflix Clone',
-      category: 'Web development',
-      image: '/images/netflix-clone.png',
-      demoUrl: 'https://netflix-clone.demo.com',
-      sourceUrl: 'https://github.com/username/netflix-clone'
-    }
-  ];
+  // Map skill data with icons
+  const skills = skillsData.skills.map(skill => ({
+    ...skill,
+    icon: iconComponents[skill.iconType]
+  }));
 
   const renderContent = () => {
     switch (activeTab) {
       case 'about':
         return (
           <div className="space-y-8">
-            <AboutSection aboutText={aboutText} passionText={passionText} skills={skills} />
+            <AboutSection 
+              aboutText={profileData.aboutText} 
+              passionText={profileData.passionText} 
+              skills={skills} 
+            />
           </div>
         );
       case 'resume':
-        return <ResumeSection education={educationData} experience={experienceData} />;
+        return <ResumeSection education={resumeData.education} experience={resumeData.experience} />;
       case 'portfolio':
-        return <PortfolioSection projects={portfolioData} />;
+        return <PortfolioSection projects={portfolioData.projects} />;
       case 'contact':
         return <ContactSection location={profileData.location} />;
       default:
