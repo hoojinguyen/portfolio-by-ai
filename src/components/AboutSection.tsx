@@ -68,7 +68,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ aboutText, passionText, ski
       <div>
         <h2 className="text-xl font-bold text-white mb-6 border-b border-yellow-500 pb-2 inline-block">Skills</h2>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
           {skills.map((skill, index) => (
             <div key={index} className="flex flex-col items-center">
               <div 
