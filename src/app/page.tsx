@@ -31,12 +31,14 @@ export default function Home() {
     {
       school: 'Nihareeka College Of Management And Information Technology',
       degree: 'Bachelor of Science in Computer Science and information Technology (B.Sc. CSIT)',
-      period: '2017 — 2021'
+      period: '2017 — 2021',
+      logo: '/images/nihareeka-logo.png'
     },
     {
       school: 'Greenland International College',
       degree: '+2 Science',
-      period: '2015 — 2017'
+      period: '2015 — 2017',
+      logo: '/images/greenland-logo.png'
     }
   ];
 
@@ -46,6 +48,7 @@ export default function Home() {
       company: 'Tokma Technologies',
       location: 'Kathmandu, Nepal',
       period: 'Aug, 2024 — Present • 8 mos',
+      logo: '/images/tokma-logo.png',
       responsibilities: [
         'Developed new features and implemented UI designs into code using Flutter.',
         'Designed and created custom e-form features including scrolling features and data entries.',
@@ -64,6 +67,7 @@ export default function Home() {
       company: 'Infancer Technology',
       location: 'Kathmandu, Nepal',
       period: 'Oct, 2022 — Aug, 2024 • 1 yr, 11 mos',
+      logo: '/images/infancer-logo.png',
       responsibilities: [
         'Developed new features and transformed UI designs into fully functional user interfaces.',
         'Integrated payment solution like eSewa, for secure and seamless transactions.',

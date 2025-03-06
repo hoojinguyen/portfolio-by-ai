@@ -1,10 +1,12 @@
 import React from 'react';
 import { FaGraduationCap, FaBriefcase, FaFileDownload } from 'react-icons/fa';
+import Image from 'next/image';
 
 interface Education {
   school: string;
   degree: string;
   period: string;
+  logo?: string;
 }
 
 interface Experience {
@@ -13,6 +15,7 @@ interface Experience {
   location: string;
   period: string;
   responsibilities: string[];
+  logo?: string;
 }
 
 interface ResumeSectionProps {
@@ -35,9 +38,24 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({ education, experience }) 
             <div key={index} className="relative pl-6 pb-6 border-l border-zinc-700 last:pb-0">
               <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-yellow-500" />
               <div className="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700/50">
-                <h3 className="text-lg font-semibold text-white mb-1">{edu.school}</h3>
-                <p className="text-zinc-400 mb-2">{edu.degree}</p>
-                <p className="text-sm text-yellow-500/80">{edu.period}</p>
+                <div className="flex items-start gap-4">
+                  {edu.logo && (
+                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc-700/30 overflow-hidden">
+                      <Image
+                        src={edu.logo}
+                        alt={edu.school}
+                        width={48}
+                        height={48}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="text-lg font-semibold text-white mb-1">{edu.school}</h3>
+                    <p className="text-zinc-400 mb-2">{edu.degree}</p>
+                    <p className="text-sm text-yellow-500/80">{edu.period}</p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -56,21 +74,36 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({ education, experience }) 
             <div key={index} className="relative pl-6 pb-6 border-l border-zinc-700 last:pb-0">
               <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-yellow-500" />
               <div className="bg-zinc-800/50 p-6 rounded-lg border border-zinc-700/50">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h3 className="text-lg font-semibold text-white">{exp.position}</h3>
-                    <p className="text-zinc-400">{exp.company}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-yellow-500/80">{exp.period}</p>
-                    <p className="text-sm text-zinc-500">{exp.location}</p>
+                <div className="flex items-start gap-4">
+                  {exp.logo && (
+                    <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-zinc-700/30 overflow-hidden">
+                      <Image
+                        src={exp.logo}
+                        alt={exp.company}
+                        width={48}
+                        height={48}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  )}
+                  <div className="flex-grow">
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className="text-lg font-semibold text-white">{exp.position}</h3>
+                        <p className="text-zinc-400">{exp.company}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm text-yellow-500/80">{exp.period}</p>
+                        <p className="text-sm text-zinc-500">{exp.location}</p>
+                      </div>
+                    </div>
+                    <ul className="list-disc list-inside space-y-2 text-zinc-400">
+                      {exp.responsibilities.map((responsibility, idx) => (
+                        <li key={idx} className="text-sm">{responsibility}</li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-                <ul className="list-disc list-inside space-y-2 text-zinc-400">
-                  {exp.responsibilities.map((responsibility, idx) => (
-                    <li key={idx} className="text-sm">{responsibility}</li>
-                  ))}
-                </ul>
               </div>
             </div>
           ))}
