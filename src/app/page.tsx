@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import ProfileCard from '@/components/ProfileCard';
 import AboutSection from '@/components/AboutSection';
+import ResumeSection from '@/components/ResumeSection';
 import Navigation from '@/components/Navigation';
 import { FaReact, FaNodeJs, FaJsSquare, FaPython, FaAws, FaDocker, FaGitAlt } from 'react-icons/fa';
 import { SiTypescript, SiTailwindcss, SiMongodb, SiGraphql, SiRedux } from 'react-icons/si';
@@ -24,6 +25,58 @@ export default function Home() {
   // About section text
   const aboutText = "I'm a full-stack developer with 5+ years of experience in web development and mobile app development. I specialize in JavaScript, React, Node.js, and modern web technologies.";
   const passionText = "I enjoy working on complex problems and creating user-friendly solutions. My passion is to combine technology and design to create meaningful experiences that users love to interact with.";
+
+  // Resume data
+  const educationData = [
+    {
+      school: 'Nihareeka College Of Management And Information Technology',
+      degree: 'Bachelor of Science in Computer Science and information Technology (B.Sc. CSIT)',
+      period: '2017 — 2021'
+    },
+    {
+      school: 'Greenland International College',
+      degree: '+2 Science',
+      period: '2015 — 2017'
+    }
+  ];
+
+  const experienceData = [
+    {
+      position: 'Mid-Level Flutter Developer',
+      company: 'Tokma Technologies',
+      location: 'Kathmandu, Nepal',
+      period: 'Aug, 2024 — Present • 8 mos',
+      responsibilities: [
+        'Developed new features and implemented UI designs into code using Flutter.',
+        'Designed and created custom e-form features including scrolling features and data entries.',
+        'Integrated Google and Facebook sign-in for user authentication.',
+        'Designed dynamic functionalities using the BLOC design pattern.',
+        'Integrated APIs for seamless data communication and backend functionality.',
+        'Implemented payment gateway integration like Khalti for secure transactions.',
+        'Collaborated with other developers and backend team to deliver features.',
+        'Participated in team meetings to discuss new features and project updates.',
+        'Ensured smooth functionality and user-friendly experiences throughout the app.',
+        'Performed code review and deployed the app in Playstore and Appstore.'
+      ]
+    },
+    {
+      position: 'Flutter Developer',
+      company: 'Infancer Technology',
+      location: 'Kathmandu, Nepal',
+      period: 'Oct, 2022 — Aug, 2024 • 1 yr, 11 mos',
+      responsibilities: [
+        'Developed new features and transformed UI designs into fully functional user interfaces.',
+        'Integrated payment solution like eSewa, for secure and seamless transactions.',
+        'Optimized application performance to ensure a smooth and engaging user experience.',
+        'Supported other team members initiatives by developing solutions to common problems and sharing those solutions.',
+        'Identified and resolved bugs, improving app stability and performance.',
+        'Wrote clean, maintainable, and testable code following best practices.',
+        'Utilization of latest version of support libraries to ensure backend compatibility.',
+        'Integrated payment solution like eSewa, for secure and seamless transactions.',
+        'Collaborated with backend developers, designers, and cross-functional teams to deliver scalable, high-quality solutions.'
+      ]
+    }
+  ];
 
   // Skills data
   const skills = [
@@ -98,7 +151,7 @@ export default function Home() {
           </div>
         );
       case 'resume':
-        return <div>Resume Content</div>;
+        return <ResumeSection education={educationData} experience={experienceData} />;
       case 'portfolio':
         return <div>Portfolio Content</div>;
       case 'blog':
