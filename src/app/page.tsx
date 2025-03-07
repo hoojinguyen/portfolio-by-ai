@@ -1,44 +1,45 @@
 'use client';
 
-import React, { useState } from 'react';
-import ProfileCard from '@/components/ProfileCard';
 import AboutSection from '@/components/AboutSection';
-import ResumeSection from '@/components/ResumeSection';
-import PortfolioSection from '@/components/PortfolioSection';
-import Navigation from '@/components/Navigation';
-import ThemeToggle from '@/components/ThemeToggle';
-import FloatingActionButton from '@/components/FloatingActionButton';
-import ParticleBackground from '@/components/ParticleBackground';
+import ContactSection from '@/components/ContactSection';
 import CustomCursor from '@/components/CustomCursor';
+import FloatingActionButton from '@/components/FloatingActionButton';
+import Navigation from '@/components/Navigation';
+import ParticleBackground from '@/components/ParticleBackground';
+import PortfolioSection from '@/components/PortfolioSection';
+import ProfileCard from '@/components/ProfileCard';
+import ResumeSection from '@/components/ResumeSection';
+import ThemeToggle from '@/components/ThemeToggle';
+import React, { useState } from 'react';
 import {
-  FaReact,
-  FaNodeJs,
-  FaJsSquare,
-  FaPython,
   FaAws,
   FaDocker,
   FaGitAlt,
+  FaJsSquare,
+  FaNodeJs,
+  FaPython,
+  FaReact,
   FaVuejs,
 } from 'react-icons/fa';
-import ContactSection from '@/components/ContactSection';
 import {
-  SiTypescript,
-  SiTailwindcss,
-  SiMongodb,
+  SiFirebase,
   SiGraphql,
-  SiRedux,
+  SiKubernetes,
+  SiMongodb,
   SiNextdotjs,
   SiNuxtdotjs,
-  SiKubernetes,
   SiPostgresql,
-  SiFirebase,
+  SiRedux,
+  SiTailwindcss,
+  SiTypescript,
 } from 'react-icons/si';
 
 // Import JSON data
-import profileData from '@/config/profile.json';
-import skillsData from '@/config/skills.json';
+import { RetroGrid } from '@/components/magicui/retro-grid';
 import portfolioData from '@/config/portfolio.json';
+import profileData from '@/config/profile.json';
 import resumeData from '@/config/resume.json';
+import skillsData from '@/config/skills.json';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('about');
@@ -98,6 +99,8 @@ export default function Home() {
 
   return (
     <>
+      <RetroGrid opacity={0.2} />
+
       {/* Custom cursor */}
       <CustomCursor />
 

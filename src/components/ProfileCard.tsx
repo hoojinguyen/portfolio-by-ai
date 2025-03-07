@@ -56,10 +56,10 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
         <div className="absolute bottom-1 right-1 w-3 h-3 bg-green-500 rounded-full"></div>
       </div>
 
-      <h2 className="text-xl font-bold mb-1 bg-gradient-to-r from-[var(--color-accent-tertiary)] via-[var(--color-accent-secondary)] to-[var(--color-accent-primary)] text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
+      <h2 className="text-xl font-bold mb-2 bg-gradient-to-r from-[var(--color-accent-tertiary)] via-[var(--color-accent-secondary)] to-[var(--color-accent-primary)] text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
         {name}
       </h2>
-      <p className="text-sm mb-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
+      <p className="text-sm mb-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
         {title}
       </p>
       <p className="text-[var(--color-text-tertiary)] text-sm mb-4">👨‍💻 | ⚽️ | 🏸 | 🎧 | 🕺</p>

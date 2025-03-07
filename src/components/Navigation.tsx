@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
+import { BorderBeam } from './magicui/border-beam';
+import { CoolMode } from './magicui/cool-mode';
 
 interface NavigationProps {
   activeTab: string;
@@ -65,55 +67,57 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
 
             return (
               <motion.li key={item.id} className="relative">
-                <button
-                  onClick={() => handleTabChange(item.id)}
-                  onMouseEnter={() => setHoveredTab(item.id)}
-                  onMouseLeave={() => setHoveredTab(null)}
-                  className={`relative py-2 px-2 md:px-3 text-xs md:text-sm font-medium transition-all duration-300 rounded-md flex items-center gap-1 md:gap-2 ${
-                    isActive
-                      ? 'text-[var(--color-text-primary)]'
-                      : 'text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)]'
-                  }`}
-                >
-                  {/* Icon with pop animation on hover */}
-                  <motion.span
-                    animate={{
-                      scale: isHovered || isActive ? 1.2 : 1,
-                      rotate: isHovered ? [0, -10, 10, -5, 5, 0] : 0,
-                    }}
-                    transition={{ duration: 0.5 }}
-                    className={`transition-colors duration-300 ${
-                      isActive ? 'opacity-100' : 'opacity-70'
+                <CoolMode>
+                  <button
+                    onClick={() => handleTabChange(item.id)}
+                    onMouseEnter={() => setHoveredTab(item.id)}
+                    onMouseLeave={() => setHoveredTab(null)}
+                    className={`relative py-2 px-2 md:px-3 text-xs md:text-sm font-medium transition-all duration-300 rounded-md flex items-center gap-1 md:gap-2 ${
+                      isActive
+                        ? 'text-[var(--color-text-primary)]'
+                        : 'text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)]'
                     }`}
                   >
-                    {item.icon}
-                  </motion.span>
-
-                  {/* Tab name */}
-                  <span>{item.name}</span>
-
-                  {/* Underline effect */}
-                  <motion.span
-                    className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[var(--color-accent-primary)] via-[var(--color-accent-secondary)] to-[var(--color-accent-tertiary)]"
-                    initial={false}
-                    animate={{
-                      scaleX: isActive ? 1 : 0,
-                      opacity: isActive ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  />
-
-                  {/* Hover glow effect */}
-                  {isHovered && !isActive && (
+                    {/* Icon with pop animation on hover */}
                     <motion.span
-                      className="absolute inset-0 rounded-md bg-[var(--color-bg-hover)]/30 -z-10"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      layoutId="hoverGlow"
+                      animate={{
+                        scale: isHovered || isActive ? 1.2 : 1,
+                        rotate: isHovered ? [0, -10, 10, -5, 5, 0] : 0,
+                      }}
+                      transition={{ duration: 0.5 }}
+                      className={`transition-colors duration-300 ${
+                        isActive ? 'opacity-100' : 'opacity-70'
+                      }`}
+                    >
+                      {item.icon}
+                    </motion.span>
+
+                    {/* Tab name */}
+                    <span>{item.name}</span>
+
+                    {/* Underline effect */}
+                    <motion.span
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[var(--color-accent-primary)] via-[var(--color-accent-secondary)] to-[var(--color-accent-tertiary)]"
+                      initial={false}
+                      animate={{
+                        scaleX: isActive ? 1 : 0,
+                        opacity: isActive ? 1 : 0,
+                      }}
+                      transition={{ duration: 0.3 }}
                     />
-                  )}
-                </button>
+
+                    {/* Hover glow effect */}
+                    {isHovered && !isActive && (
+                      <motion.span
+                        className="absolute inset-0 rounded-md bg-[var(--color-bg-hover)]/30 -z-10"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        layoutId="hoverGlow"
+                      />
+                    )}
+                  </button>
+                </CoolMode>
 
                 {/* Active indicator dot */}
                 {isActive && (
@@ -130,6 +134,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
           })}
         </ul>
       </div>
+      <BorderBeam duration={8} size={100} />
     </nav>
   );
 };
