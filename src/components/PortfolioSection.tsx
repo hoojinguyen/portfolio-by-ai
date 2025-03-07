@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React, { useState } from "react";
+import Image from "next/image";
 
 interface Project {
   id: number;
@@ -8,6 +8,7 @@ interface Project {
   image: string;
   demoUrl?: string;
   sourceUrl?: string;
+  description?: string;
 }
 
 interface PortfolioSectionProps {
@@ -15,17 +16,19 @@ interface PortfolioSectionProps {
 }
 
 const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) => {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const categories = [
-    { id: 'all', name: 'All' },
-    { id: 'applications', name: 'Applications' },
-    { id: 'web-development', name: 'Web development' },
-    { id: 'ui-ux', name: 'UI/UX' },
+    { id: "all", name: "All" },
+    { id: "applications", name: "Applications" },
+    { id: "web-development", name: "Web development" },
+    { id: "ui-ux", name: "UI/UX" },
   ];
 
-  const filteredProjects = projects.filter(project => 
-    activeFilter === 'all' ? true : project.category.toLowerCase() === activeFilter
+  const filteredProjects = projects.filter((project) =>
+    activeFilter === "all"
+      ? true
+      : project.category.toLowerCase() === activeFilter
   );
 
   return (
@@ -37,9 +40,11 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) => {
             key={category.id}
             onClick={() => setActiveFilter(category.id)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300
-              ${activeFilter === category.id
-                ? 'bg-[var(--color-accent-primary)] text-[var(--color-bg-primary)]'
-                : 'bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)] hover:text-[var(--color-text-primary)]'}
+              ${
+                activeFilter === category.id
+                  ? "bg-[var(--color-accent-primary)] text-[var(--color-bg-primary)]"
+                  : "bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)] hover:text-[var(--color-text-primary)]"
+              }
             `}
           >
             {category.name}
@@ -88,8 +93,17 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) => {
             </div>
             {/* Project Info */}
             <div className="p-4">
-              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-1">{project.title}</h3>
-              <p className="text-sm text-[var(--color-accent-primary)]/80">{project.category}</p>
+              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-1">
+                {project.title}
+              </h3>
+              <p className="text-sm text-[var(--color-accent-primary)]/80 mb-2">
+                {project.category}
+              </p>
+              {project.description && (
+                <p className="text-sm text-[var(--color-text-secondary)] line-clamp-3">
+                  {project.description}
+                </p>
+              )}
             </div>
           </div>
         ))}

@@ -8,6 +8,8 @@ import PortfolioSection from "@/components/PortfolioSection";
 import Navigation from "@/components/Navigation";
 import ThemeToggle from "@/components/ThemeToggle";
 import FloatingActionButton from "@/components/FloatingActionButton";
+import ParticleBackground from "@/components/ParticleBackground";
+import CustomCursor from "@/components/CustomCursor";
 import {
   FaReact,
   FaNodeJs,
@@ -98,27 +100,35 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-end mb-4">
-          <ThemeToggle />
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
-          {/* Left Column - Profile Card */}
-          <div className="flex justify-center lg:justify-start">
-            <ProfileCard {...profileData} />
-          </div>
-
-          {/* Right Column - Content */}
-          <div className="space-y-8">
-            <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
-            {renderContent()}
-          </div>
-        </div>
-      </div>
+    <>
+      {/* Custom cursor */}
+      <CustomCursor />
       
-      {/* Floating Action Button */}
-      <FloatingActionButton activeTab={activeTab} onTabChange={setActiveTab} />
-    </div>
+      {/* Particle background */}
+      <ParticleBackground />
+      
+      <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-end mb-4">
+            <ThemeToggle />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
+            {/* Left Column - Profile Card */}
+            <div className="flex justify-center lg:justify-start">
+              <ProfileCard {...profileData} />
+            </div>
+
+            {/* Right Column - Content */}
+            <div className="space-y-8">
+              <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
+              {renderContent()}
+            </div>
+          </div>
+        </div>
+        
+        {/* Floating Action Button */}
+        <FloatingActionButton activeTab={activeTab} onTabChange={setActiveTab} />
+      </div>
+    </>
   );
 }
