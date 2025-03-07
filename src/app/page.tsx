@@ -7,6 +7,7 @@ import ResumeSection from "@/components/ResumeSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import Navigation from "@/components/Navigation";
 import ThemeToggle from "@/components/ThemeToggle";
+import FloatingActionButton from "@/components/FloatingActionButton";
 import {
   FaReact,
   FaNodeJs,
@@ -115,6 +116,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+      
+      {/* Floating Action Button */}
+      <FloatingActionButton activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   );
 }
