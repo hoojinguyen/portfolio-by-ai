@@ -3,16 +3,16 @@ import { motion, useInView, useAnimation } from 'framer-motion';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
-  width?: "fit-content" | "100%";
+  width?: 'fit-content' | '100%';
   delay?: number;
-  direction?: "up" | "down" | "left" | "right" | "none";
+  direction?: 'up' | 'down' | 'left' | 'right' | 'none';
 }
 
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
   children,
-  width = "fit-content",
+  width = 'fit-content',
   delay = 0,
-  direction = "up",
+  direction = 'up',
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -20,14 +20,14 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
 
   // Set initial animation values based on direction
   const getInitialY = () => {
-    if (direction === "up") return 50;
-    if (direction === "down") return -50;
+    if (direction === 'up') return 50;
+    if (direction === 'down') return -50;
     return 0;
   };
 
   const getInitialX = () => {
-    if (direction === "left") return 50;
-    if (direction === "right") return -50;
+    if (direction === 'left') return 50;
+    if (direction === 'right') return -50;
     return 0;
   };
 
@@ -49,10 +49,10 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   return (
     <motion.div
       ref={ref}
-      initial={{ 
-        opacity: 0, 
-        y: getInitialY(), 
-        x: getInitialX() 
+      initial={{
+        opacity: 0,
+        y: getInitialY(),
+        x: getInitialX(),
       }}
       animate={controls}
       style={{ width }}

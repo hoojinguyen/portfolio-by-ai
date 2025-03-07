@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import ProfileCard from "@/components/ProfileCard";
-import AboutSection from "@/components/AboutSection";
-import ResumeSection from "@/components/ResumeSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import Navigation from "@/components/Navigation";
-import ThemeToggle from "@/components/ThemeToggle";
-import FloatingActionButton from "@/components/FloatingActionButton";
-import ParticleBackground from "@/components/ParticleBackground";
-import CustomCursor from "@/components/CustomCursor";
+import React, { useState } from 'react';
+import ProfileCard from '@/components/ProfileCard';
+import AboutSection from '@/components/AboutSection';
+import ResumeSection from '@/components/ResumeSection';
+import PortfolioSection from '@/components/PortfolioSection';
+import Navigation from '@/components/Navigation';
+import ThemeToggle from '@/components/ThemeToggle';
+import FloatingActionButton from '@/components/FloatingActionButton';
+import ParticleBackground from '@/components/ParticleBackground';
+import CustomCursor from '@/components/CustomCursor';
 import {
   FaReact,
   FaNodeJs,
@@ -19,8 +19,8 @@ import {
   FaDocker,
   FaGitAlt,
   FaVuejs,
-} from "react-icons/fa";
-import ContactSection from "@/components/ContactSection";
+} from 'react-icons/fa';
+import ContactSection from '@/components/ContactSection';
 import {
   SiTypescript,
   SiTailwindcss,
@@ -32,16 +32,16 @@ import {
   SiKubernetes,
   SiPostgresql,
   SiFirebase,
-} from "react-icons/si";
+} from 'react-icons/si';
 
 // Import JSON data
-import profileData from "@/config/profile.json";
-import skillsData from "@/config/skills.json";
-import portfolioData from "@/config/portfolio.json";
-import resumeData from "@/config/resume.json";
+import profileData from '@/config/profile.json';
+import skillsData from '@/config/skills.json';
+import portfolioData from '@/config/portfolio.json';
+import resumeData from '@/config/resume.json';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("about");
+  const [activeTab, setActiveTab] = useState('about');
 
   // Map skill icons to their components
   const iconComponents: { [key: string]: React.ReactNode } = {
@@ -66,14 +66,14 @@ export default function Home() {
   };
 
   // Map skill data with icons
-  const skills = skillsData.skills.map((skill) => ({
+  const skills = skillsData.skills.map(skill => ({
     ...skill,
     icon: iconComponents[skill.iconType],
   }));
 
   const renderContent = () => {
     switch (activeTab) {
-      case "about":
+      case 'about':
         return (
           <div className="space-y-8">
             <AboutSection
@@ -83,16 +83,13 @@ export default function Home() {
             />
           </div>
         );
-      case "resume":
+      case 'resume':
         return (
-          <ResumeSection
-            education={resumeData.education}
-            experience={resumeData.experience}
-          />
+          <ResumeSection education={resumeData.education} experience={resumeData.experience} />
         );
-      case "portfolio":
+      case 'portfolio':
         return <PortfolioSection projects={portfolioData.projects} />;
-      case "contact":
+      case 'contact':
         return <ContactSection />;
       default:
         return null;
@@ -103,10 +100,10 @@ export default function Home() {
     <>
       {/* Custom cursor */}
       <CustomCursor />
-      
+
       {/* Particle background */}
       <ParticleBackground />
-      
+
       <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-end mb-4">
@@ -125,7 +122,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        
+
         {/* Floating Action Button */}
         <FloatingActionButton activeTab={activeTab} onTabChange={setActiveTab} />
       </div>

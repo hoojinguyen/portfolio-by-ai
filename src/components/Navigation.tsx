@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 
 interface NavigationProps {
   activeTab: string;
@@ -17,10 +17,10 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
   }, [activeTab]);
 
   const navItems = [
-    { title: "About Me", name: "About", id: "about", icon: "👨‍💻" },
-    { title: "Resume", name: "Resume", id: "resume", icon: "📄" },
-    { title: "Portfolio", name: "Portfolio", id: "portfolio", icon: "🎨" },
-    { title: "Contact", name: "Contact", id: "contact", icon: "📱" },
+    { title: 'About Me', name: 'About', id: 'about', icon: '👨‍💻' },
+    { title: 'Resume', name: 'Resume', id: 'resume', icon: '📄' },
+    { title: 'Portfolio', name: 'Portfolio', id: 'portfolio', icon: '🎨' },
+    { title: 'Contact', name: 'Contact', id: 'contact', icon: '📱' },
   ];
 
   const handleTabChange = (tabId: string) => {
@@ -42,7 +42,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
           initial={false}
           // Use layout animations instead of fixed percentages for better mobile support
           layout
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         />
       )}
 
@@ -55,11 +55,11 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
           transition={{ duration: 0.3 }}
           className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-transparent bg-clip-text animate-gradient"
         >
-          {navItems.find((item) => item.id === activeTab)?.title || "About Me"}
+          {navItems.find(item => item.id === activeTab)?.title || 'About Me'}
         </motion.h1>
 
         <ul className="flex flex-wrap gap-3 md:gap-6 relative w-full md:w-auto">
-          {navItems.map((item) => {
+          {navItems.map(item => {
             const isActive = activeTab === item.id;
             const isHovered = hoveredTab === item.id;
 
@@ -70,9 +70,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
                   onMouseEnter={() => setHoveredTab(item.id)}
                   onMouseLeave={() => setHoveredTab(null)}
                   className={`relative py-2 px-2 md:px-3 text-xs md:text-sm font-medium transition-all duration-300 rounded-md flex items-center gap-1 md:gap-2 ${
-                    isActive 
-                      ? "text-[var(--color-text-primary)]" 
-                      : "text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)]"
+                    isActive
+                      ? 'text-[var(--color-text-primary)]'
+                      : 'text-[var(--color-text-tertiary)] hover:text-[var(--color-text-secondary)]'
                   }`}
                 >
                   {/* Icon with pop animation on hover */}
@@ -83,7 +83,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
                     }}
                     transition={{ duration: 0.5 }}
                     className={`transition-colors duration-300 ${
-                      isActive ? "opacity-100" : "opacity-70"
+                      isActive ? 'opacity-100' : 'opacity-70'
                     }`}
                   >
                     {item.icon}
@@ -122,7 +122,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
                     layoutId="activeDot"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                   />
                 )}
               </motion.li>

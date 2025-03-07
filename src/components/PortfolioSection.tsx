@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState } from 'react';
+import Image from 'next/image';
 
 interface Project {
   id: number;
@@ -16,34 +16,32 @@ interface PortfolioSectionProps {
 }
 
 const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) => {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const [activeFilter, setActiveFilter] = useState('all');
 
   const categories = [
-    { id: "all", name: "All" },
-    { id: "applications", name: "Applications" },
-    { id: "web-development", name: "Web development" },
-    { id: "ui-ux", name: "UI/UX" },
+    { id: 'all', name: 'All' },
+    { id: 'applications', name: 'Applications' },
+    { id: 'web-development', name: 'Web development' },
+    { id: 'ui-ux', name: 'UI/UX' },
   ];
 
-  const filteredProjects = projects.filter((project) =>
-    activeFilter === "all"
-      ? true
-      : project.category.toLowerCase() === activeFilter
+  const filteredProjects = projects.filter(project =>
+    activeFilter === 'all' ? true : project.category.toLowerCase() === activeFilter
   );
 
   return (
     <div className="bg-[var(--color-bg-secondary)] rounded-lg p-8 shadow-[0_24px_80px_var(--color-shadow)] border border-[var(--color-border-primary)]">
       {/* Filter Buttons */}
       <div className="flex flex-wrap gap-4 mb-8">
-        {categories.map((category) => (
+        {categories.map(category => (
           <button
             key={category.id}
             onClick={() => setActiveFilter(category.id)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300
               ${
                 activeFilter === category.id
-                  ? "bg-[var(--color-accent-primary)] text-[var(--color-bg-primary)]"
-                  : "bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)] hover:text-[var(--color-text-primary)]"
+                  ? 'bg-[var(--color-accent-primary)] text-[var(--color-bg-primary)]'
+                  : 'bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)] hover:text-[var(--color-text-primary)]'
               }
             `}
           >
@@ -54,7 +52,7 @@ const PortfolioSection: React.FC<PortfolioSectionProps> = ({ projects }) => {
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
+        {filteredProjects.map(project => (
           <div
             key={project.id}
             className="group relative overflow-hidden rounded-lg bg-[var(--color-bg-tertiary)]/50 border border-[var(--color-border-secondary)]/50"

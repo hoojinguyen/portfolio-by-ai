@@ -1,5 +1,5 @@
-import React from "react";
-import ScrollReveal from "./ScrollReveal";
+import React from 'react';
+import ScrollReveal from './ScrollReveal';
 
 const ContactSection: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {

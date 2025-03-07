@@ -50,14 +50,15 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({ activeTab, 
       {/* Menu Items */}
       {isOpen && (
         <div className="absolute bottom-16 right-0 mb-2 flex flex-col-reverse gap-3">
-          {navItems.map((item) => (
+          {navItems.map(item => (
             <motion.button
               key={item.id}
               onClick={() => handleTabChange(item.id)}
-              className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${activeTab === item.id
-                ? 'bg-[var(--color-accent-primary)] text-white'
-                : 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] hover:bg-[var(--color-bg-hover)]'
-                } transition-all duration-300`}
+              className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg ${
+                activeTab === item.id
+                  ? 'bg-[var(--color-accent-primary)] text-white'
+                  : 'bg-[var(--color-bg-secondary)] text-[var(--color-text-primary)] hover:bg-[var(--color-bg-hover)]'
+              } transition-all duration-300`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}

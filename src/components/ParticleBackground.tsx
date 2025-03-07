@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef } from "react";
-import { useTheme } from "@/context/ThemeContext";
+import React, { useEffect, useRef } from 'react';
+import { useTheme } from '@/context/ThemeContext';
 
 interface Particle {
   x: number;
@@ -23,7 +23,7 @@ const ParticleBackground: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     // Set canvas to full window size
@@ -48,7 +48,7 @@ const ParticleBackground: React.FC = () => {
           speedX: (Math.random() - 0.5) * 0.5,
           speedY: (Math.random() - 0.5) * 0.5,
           color:
-            theme === "dark"
+            theme === 'dark'
               ? `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(
                   Math.random() * 100 + 155
                 )}, ${Math.floor(Math.random() * 255)}, 0.7)`
@@ -65,7 +65,7 @@ const ParticleBackground: React.FC = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Update and draw particles
-      particlesRef.current.forEach((particle) => {
+      particlesRef.current.forEach(particle => {
         // Update position
         particle.x += particle.speedX;
         particle.y += particle.speedY;
@@ -107,7 +107,7 @@ const ParticleBackground: React.FC = () => {
 
             ctx.beginPath();
             ctx.strokeStyle =
-              theme === "dark"
+              theme === 'dark'
                 ? `rgba(100, 100, 255, ${opacity * 0.15})`
                 : `rgba(100, 100, 200, ${opacity * 0.1})`;
             ctx.lineWidth = 1;
@@ -120,13 +120,13 @@ const ParticleBackground: React.FC = () => {
     };
 
     // Set up canvas and start animation
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     handleResize();
     animate();
 
     // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameRef.current);
     };
   }, [theme]);

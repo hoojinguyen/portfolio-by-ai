@@ -135,7 +135,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             href={instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-xl bg-[var(--color-bg-tertiary)]/50 flex items-center justify-center text-[var(--color-text-tertiary)] hover:bg-gradient-to-r from-blue-500 to-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-blue-500/20 group"
+            className="w-12 h-12 rounded-xl bg-[var(--color-bg-tertiary)]/50 flex items-center justify-center text-[var(--color-text-tertiary)] hover:bg-gradient-to-r from-pink-500 to-purple-600 hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-pink-500/20 group"
           >
             <FaInstagram className="text-xl group-hover:animate-pulse" />
           </a>
@@ -145,7 +145,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             href={thread}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-xl bg-[var(--color-bg-tertiary)]/50 flex items-center justify-center text-[var(--color-text-tertiary)] hover:bg-gradient-to-r from-blue-500 to-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-blue-500/20 group"
+            className="w-12 h-12 rounded-xl bg-[var(--color-bg-tertiary)]/50 flex items-center justify-center text-[var(--color-text-tertiary)] hover:bg-gradient-to-r from-gray-800 to-black hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-gray-500/20 group"
           >
             <SiThreads className="text-xl group-hover:animate-pulse" />
           </a>
@@ -155,7 +155,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
             href={twitter}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-xl bg-[var(--color-bg-tertiary)]/50 flex items-center justify-center text-[var(--color-text-tertiary)] hover:bg-gradient-to-r from-blue-500 to-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-blue-500/20 group"
+            className="w-12 h-12 rounded-xl bg-[var(--color-bg-tertiary)]/50 flex items-center justify-center text-[var(--color-text-tertiary)] hover:bg-gradient-to-r from-blue-400 to-blue-500 hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-lg hover:shadow-blue-500/20 group"
           >
             <FaTwitter className="text-xl group-hover:animate-pulse" />
           </a>

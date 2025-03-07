@@ -33,10 +33,13 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({ education, experience }) 
           <FaGraduationCap className="inline-block mr-2" />
           Education
         </h2>
-        
+
         <div className="space-y-6">
           {education.map((edu, index) => (
-            <div key={index} className="relative pl-6 pb-6 border-l border-[var(--color-border-secondary)] last:pb-0">
+            <div
+              key={index}
+              className="relative pl-6 pb-6 border-l border-[var(--color-border-secondary)] last:pb-0"
+            >
               <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-[var(--color-accent-primary)]" />
               <div className="bg-[var(--color-bg-tertiary)]/50 p-6 rounded-lg border border-[var(--color-border-secondary)]/50">
                 <div className="flex items-start gap-4">
@@ -52,7 +55,9 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({ education, experience }) 
                     </div>
                   )}
                   <div>
-                    <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-1">{edu.school}</h3>
+                    <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-1">
+                      {edu.school}
+                    </h3>
                     <p className="text-[var(--color-text-secondary)] mb-2">{edu.degree}</p>
                     <p className="text-sm text-[var(--color-accent-primary)]/80">{edu.period}</p>
                   </div>
@@ -69,10 +74,13 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({ education, experience }) 
           <FaBriefcase className="inline-block mr-2" />
           Experience
         </h2>
-        
+
         <div className="space-y-6">
           {experience.map((exp, index) => (
-            <div key={index} className="relative pl-6 pb-6 border-l border-[var(--color-border-secondary)] last:pb-0">
+            <div
+              key={index}
+              className="relative pl-6 pb-6 border-l border-[var(--color-border-secondary)] last:pb-0"
+            >
               <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 rounded-full bg-[var(--color-accent-primary)]" />
               <div className="bg-[var(--color-bg-tertiary)]/50 p-6 rounded-lg border border-[var(--color-border-secondary)]/50">
                 <div className="flex items-start gap-4">
@@ -90,7 +98,9 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({ education, experience }) 
                   <div className="flex-grow">
                     <div className="flex justify-between items-start mb-2">
                       <div>
-                        <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">{exp.position}</h3>
+                        <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
+                          {exp.position}
+                        </h3>
                         {exp?.link ? (
                           <a
                             href={exp.link}
@@ -105,13 +115,17 @@ const ResumeSection: React.FC<ResumeSectionProps> = ({ education, experience }) 
                         )}
                       </div>
                       <div className="text-right">
-                        <p className="text-sm text-[var(--color-accent-primary)]/80">{exp.period}</p>
+                        <p className="text-sm text-[var(--color-accent-primary)]/80">
+                          {exp.period}
+                        </p>
                         <p className="text-sm text-[var(--color-text-tertiary)]">{exp.location}</p>
                       </div>
                     </div>
                     <ul className="list-disc list-inside space-y-2 text-[var(--color-text-secondary)]">
                       {exp.responsibilities.map((responsibility, idx) => (
-                        <li key={idx} className="text-sm">{responsibility}</li>
+                        <li key={idx} className="text-sm">
+                          {responsibility}
+                        </li>
                       ))}
                     </ul>
                   </div>
