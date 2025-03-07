@@ -1,19 +1,65 @@
 @import "tailwindcss";
 
 :root {
+  /* Base colors */
   --background: #09090b;
   --foreground: #ffffff;
+  
+  /* Dark mode (default) */
+  --color-bg-primary: #09090b;
+  --color-bg-secondary: #18181b; /* zinc-900 */
+  --color-bg-tertiary: #27272a; /* zinc-800 */
+  --color-bg-hover: #3f3f46; /* zinc-700 */
+  
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a1a1aa; /* zinc-400 */
+  --color-text-tertiary: #71717a; /* zinc-500 */
+  
+  --color-border-primary: #3f3f46; /* zinc-700 */
+  --color-border-secondary: #27272a; /* zinc-800 */
+  
+  --color-shadow: hsla(0, 0%, 0%, 0.25);
+  
+  --color-accent-primary: #eab308; /* yellow-500 */
+  --color-accent-secondary: #ec4899; /* pink-500 */
+  --color-accent-tertiary: #8b5cf6; /* purple-500 */
+}
+
+/* Light mode */
+.light {
+  /* Refined background colors with subtle blue tint for a modern look */
+  --color-bg-primary: #f8fafc; /* slate-50 */
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f1f5f9; /* slate-100 */
+  --color-bg-hover: #e2e8f0; /* slate-200 */
+  
+  /* Improved text colors with better contrast */
+  --color-text-primary: #0f172a; /* slate-900 */
+  --color-text-secondary: #334155; /* slate-700 */
+  --color-text-tertiary: #64748b; /* slate-500 */
+  
+  /* Enhanced border colors for better definition */
+  --color-border-primary: #cbd5e1; /* slate-300 */
+  --color-border-secondary: #e2e8f0; /* slate-200 */
+  
+  /* Softer shadow for light mode */
+  --color-shadow: hsla(215, 25%, 27%, 0.08);
+  
+  /* Refined accent colors with better saturation for light mode */
+  --color-accent-primary: #f59e0b; /* amber-500 - slightly warmer yellow */
+  --color-accent-secondary: #db2777; /* pink-600 - deeper pink for better contrast */
+  --color-accent-tertiary: #7c3aed; /* violet-600 - richer purple */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-bg-primary);
+  --color-foreground: var(--color-text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }

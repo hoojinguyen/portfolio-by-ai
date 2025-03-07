@@ -6,6 +6,7 @@ import AboutSection from "@/components/AboutSection";
 import ResumeSection from "@/components/ResumeSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import Navigation from "@/components/Navigation";
+import ThemeToggle from "@/components/ThemeToggle";
 import {
   FaReact,
   FaNodeJs,
@@ -96,8 +97,11 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white py-10 px-4 md:px-10">
+    <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       <div className="max-w-7xl mx-auto">
+        <div className="flex justify-end mb-4">
+          <ThemeToggle />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
           {/* Left Column - Profile Card */}
           <div className="flex justify-center lg:justify-start">

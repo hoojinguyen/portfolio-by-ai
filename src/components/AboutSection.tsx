@@ -19,13 +19,13 @@ const AboutSection: React.FC<AboutSectionProps> = ({
 }) => {
   const services = [
     {
-      icon: <FaCode className="text-2xl text-yellow-500" />,
+      icon: <FaCode className="text-2xl text-[var(--color-accent-primary)]" />,
       title: "Web Development",
       description:
         "Creating attractive websites and web applications with modern technologies.",
     },
     {
-      icon: <FaChartLine className="text-2xl text-orange-500" />,
+      icon: <FaChartLine className="text-2xl text-[var(--color-accent-secondary)]" />,
       title: "Backend Development",
       description:
         "Highly performant solutions for your business needs with scalable and optimized experience.",
@@ -33,26 +33,26 @@ const AboutSection: React.FC<AboutSectionProps> = ({
   ];
 
   return (
-    <div className="bg-zinc-900 rounded-lg p-8 shadow-[0_24px_80px_hsla(0,0%,0%,0.25)] border border-[hsl(0,0%,22%)]">
+    <div className="bg-[var(--color-bg-secondary)] rounded-lg p-8 shadow-[0_24px_80px_var(--color-shadow)] border border-[var(--color-border-primary)]">
       {/* About Me Section */}
       <div className="mb-10">
-        <p className="text-zinc-400 mb-4">{aboutText}</p>
-        <p className="text-zinc-400">{passionText}</p>
+        <p className="text-[var(--color-text-secondary)] mb-4">{aboutText}</p>
+        <p className="text-[var(--color-text-secondary)]">{passionText}</p>
       </div>
 
       {/* What I'm Doing Section */}
       <div className="mb-10">
-        <h2 className="text-xl font-bold text-white mb-6 border-b border-yellow-500 pb-2 inline-block">
+        <h2 className="text-xl font-bold text-[var(--color-text-primary)] mb-6 border-b border-[var(--color-accent-primary)] pb-2 inline-block">
           {"What I'm Doing"}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((service, index) => (
             <div key={index} className="flex items-start space-x-4">
-              <div className="bg-zinc-800 p-3 rounded-md">{service.icon}</div>
+              <div className="bg-[var(--color-bg-tertiary)] p-3 rounded-md">{service.icon}</div>
               <div>
-                <h3 className="text-white font-medium mb-1">{service.title}</h3>
-                <p className="text-zinc-400 text-sm">{service.description}</p>
+                <h3 className="text-[var(--color-text-primary)] font-medium mb-1">{service.title}</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm">{service.description}</p>
               </div>
             </div>
           ))}
@@ -61,7 +61,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
 
       {/* Skills Section */}
       <div>
-        <h2 className="text-xl font-bold text-white mb-6 border-b border-yellow-500 pb-2 inline-block">
+        <h2 className="text-xl font-bold text-[var(--color-text-primary)] mb-6 border-b border-[var(--color-accent-primary)] pb-2 inline-block">
           Skills
         </h2>
 
@@ -69,7 +69,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
           {skills.map((skill, index) => (
             <div key={index} className="flex flex-col items-center">
               <div
-                className={`w-16 h-16 rounded-lg flex items-center justify-center mb-2 ${skill.color} border border-[hsla(0,0%,0%,0.125)] shadow-[-4px_8px_24px_hsla(0,0%,0%,0.125)] hover:shadow-[-8px_16px_32px_hsla(0,0%,0%,0.2)] transition-all duration-300 ease-in-out hover:scale-110 cursor-pointer`}
+                className={`w-16 h-16 rounded-lg flex items-center justify-center mb-2 ${skill.color} border border-[var(--color-border-secondary)] shadow-[-4px_8px_24px_var(--color-shadow)] hover:shadow-[-8px_16px_32px_var(--color-shadow)] transition-all duration-300 ease-in-out hover:scale-110 cursor-pointer`}
               >
                 {typeof skill.icon === "string" &&
                 skill.icon.startsWith("/") ? (
@@ -83,7 +83,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({
                   <div className="text-2xl">{skill.icon}</div>
                 )}
               </div>
-              <span className="text-zinc-300 text-sm">{skill.name}</span>
+              <span className="text-[var(--color-text-secondary)] text-sm">{skill.name}</span>
             </div>
           ))}
         </div>
