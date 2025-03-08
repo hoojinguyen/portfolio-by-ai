@@ -82,74 +82,83 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
   };
 
   // Generate random elements
-  const generateElements = (containerWidth: number, containerHeight: number) => {
-    const shapes: FloatingElement['shape'][] = ['circle', 'square', 'triangle', 'hexagon', 'star'];
-    const newElements: FloatingElement[] = [];
+  useEffect(() => {
+    // Move generateElements inside useEffect to avoid dependency issues
+    const generateElements = (containerWidth: number, containerHeight: number) => {
+      const shapes: FloatingElement['shape'][] = [
+        'circle',
+        'square',
+        'triangle',
+        'hexagon',
+        'star',
+      ];
+      const newElements: FloatingElement[] = [];
 
-    // Define color palettes based on theme
-    const darkThemeColors = [
-      'var(--color-accent-primary)',
-      'var(--color-accent-secondary)',
-      'var(--color-accent-tertiary)',
-      '#4f46e5', // indigo-600
-      '#0ea5e9', // sky-500
-      '#10b981', // emerald-500
-    ];
+      // Define color palettes based on theme
+      const darkThemeColors = [
+        'var(--color-accent-primary)',
+        'var(--color-accent-secondary)',
+        'var(--color-accent-tertiary)',
+        '#4f46e5', // indigo-600
+        '#0ea5e9', // sky-500
+        '#10b981', // emerald-500
+      ];
 
-    const lightThemeColors = [
-      'var(--color-accent-primary)',
-      'var(--color-accent-secondary)',
-      'var(--color-accent-tertiary)',
-      '#6366f1', // indigo-500
-      '#0ea5e9', // sky-500
-      '#10b981', // emerald-500
-    ];
+      const lightThemeColors = [
+        'var(--color-accent-primary)',
+        'var(--color-accent-secondary)',
+        'var(--color-accent-tertiary)',
+        '#6366f1', // indigo-500
+        '#0ea5e9', // sky-500
+        '#10b981', // emerald-500
+      ];
 
-    const colors = theme === 'dark' ? darkThemeColors : lightThemeColors;
+      const colors = theme === 'dark' ? darkThemeColors : lightThemeColors;
 
-    for (let i = 0; i < count; i++) {
-      const size = Math.random() * (maxSize - minSize) + minSize;
-      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      for (let i = 0; i < count; i++) {
+        const size = Math.random() * (maxSize - minSize) + minSize;
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
 
-      // Ensure elements are positioned in the empty spaces (avoid center area)
-      let x: number;
-      let y: number;
+        // Ensure elements are positioned in the empty spaces (avoid center area)
+        let x: number;
+        let y: number;
 
-      // Create a bias towards the edges
-      const edgeBias = 0.7; // Higher value = more elements at edges
+        // Create a bias towards the edges
+        const edgeBias = 0.7; // Higher value = more elements at edges
 
-      if (Math.random() > 0.5) {
-        // Position horizontally with bias
-        const horizontalBias = Math.random() > 0.5 ? edgeBias : -edgeBias;
-        x =
-          containerWidth / 2 + (containerWidth / 2) * horizontalBias * (0.5 + Math.random() * 0.5);
-        y = Math.random() * containerHeight;
-      } else {
-        // Position vertically with bias
-        const verticalBias = Math.random() > 0.5 ? edgeBias : -edgeBias;
-        x = Math.random() * containerWidth;
-        y =
-          containerHeight / 2 + (containerHeight / 2) * verticalBias * (0.5 + Math.random() * 0.5);
+        if (Math.random() > 0.5) {
+          // Position horizontally with bias
+          const horizontalBias = Math.random() > 0.5 ? edgeBias : -edgeBias;
+          x =
+            containerWidth / 2 +
+            (containerWidth / 2) * horizontalBias * (0.5 + Math.random() * 0.5);
+          y = Math.random() * containerHeight;
+        } else {
+          // Position vertically with bias
+          const verticalBias = Math.random() > 0.5 ? edgeBias : -edgeBias;
+          x = Math.random() * containerWidth;
+          y =
+            containerHeight / 2 +
+            (containerHeight / 2) * verticalBias * (0.5 + Math.random() * 0.5);
+        }
+
+        newElements.push({
+          id: i,
+          x,
+          y,
+          size,
+          rotation: Math.random() * 360,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          shape,
+          delay: Math.random() * (maxDelay - minDelay) + minDelay,
+          duration: Math.random() * (maxDuration - minDuration) + minDuration,
+          opacity: Math.random() * (maxOpacity - minOpacity) + minOpacity,
+        });
       }
 
-      newElements.push({
-        id: i,
-        x,
-        y,
-        size,
-        rotation: Math.random() * 360,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        shape,
-        delay: Math.random() * (maxDelay - minDelay) + minDelay,
-        duration: Math.random() * (maxDuration - minDuration) + minDuration,
-        opacity: Math.random() * (maxOpacity - minOpacity) + minOpacity,
-      });
-    }
+      return newElements;
+    };
 
-    return newElements;
-  };
-
-  useEffect(() => {
     const updateDimensions = () => {
       if (!containerRef.current) return;
 

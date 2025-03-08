@@ -4,7 +4,7 @@ import { FaArrowUp, FaHome, FaUser, FaFileAlt, FaBriefcase, FaEnvelope } from 'r
 
 interface FloatingActionButtonProps {
   activeTab: string;
-  onTabChange: (tab: string) => void;
+  onTabChange: (tabId: string) => void;
 }
 
 const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({ activeTab, onTabChange }) => {
@@ -18,7 +18,6 @@ const FloatingActionButton: React.FC<FloatingActionButtonProps> = ({ activeTab, 
         setIsVisible(true);
       } else {
         setIsVisible(false);
-        setIsOpen(false);
       }
     };
 

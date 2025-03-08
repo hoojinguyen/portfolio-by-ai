@@ -7,15 +7,15 @@ import { CoolMode } from './magicui/cool-mode';
 
 interface NavigationProps {
   activeTab: string;
-  onTabChange: (tab: string) => void;
+  onTabChange: (tabId: string) => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
-  const [, setPreviousTab] = useState<string>(activeTab);
+  // Remove previousTab since it's not being used
 
   useEffect(() => {
-    setPreviousTab(activeTab);
+    // Remove the effect that was only setting previousTab
   }, [activeTab]);
 
   const navItems = [
