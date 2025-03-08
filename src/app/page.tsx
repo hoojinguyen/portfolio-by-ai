@@ -4,6 +4,7 @@ import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import CustomCursor from '@/components/CustomCursor';
 import FloatingActionButton from '@/components/FloatingActionButton';
+import FloatingElements from '@/components/FloatingElements';
 import Navigation from '@/components/Navigation';
 import ParticleBackground from '@/components/ParticleBackground';
 import PortfolioSection from '@/components/PortfolioSection';
@@ -106,6 +107,9 @@ export default function Home() {
 
       {/* Particle background */}
       <ParticleBackground />
+
+      {/* Floating elements for visual interest */}
+      <FloatingElements count={20} minSize={15} maxSize={40} minOpacity={0.1} maxOpacity={0.3} />
 
       <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
         <div className="max-w-7xl mx-auto">
