@@ -10,6 +10,7 @@ import ParticleBackground from '@/components/ParticleBackground';
 import PortfolioSection from '@/components/PortfolioSection';
 import ProfileCard from '@/components/ProfileCard';
 import ResumeSection from '@/components/ResumeSection';
+import SpaceUniverse from '@/components/SpaceUniverse';
 import ThemeToggle from '@/components/ThemeToggle';
 import React, { useState } from 'react';
 import {
@@ -104,6 +105,19 @@ export default function Home() {
 
       {/* Custom cursor */}
       <CustomCursor />
+
+      {/* Space Universe background */}
+      <SpaceUniverse
+        starCount={150}
+        planetCount={4}
+        galaxyCount={2}
+        cometCount={3}
+        minStarSize={1}
+        maxStarSize={3}
+        minOpacity={0.3}
+        maxOpacity={0.8}
+        depth={true}
+      />
 
       {/* Particle background */}
       <ParticleBackground />
