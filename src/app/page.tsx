@@ -134,7 +134,7 @@ export default function Home() {
 
         {/* Space Universe background - reduced element count */}
         <SpaceUniverse
-          starCount={150}
+          starCount={250}
           planetCount={2}
           galaxyCount={1}
           cometCount={1}
@@ -149,7 +149,7 @@ export default function Home() {
         <ParticleBackground />
 
         {/* Floating elements - reduced count */}
-        <FloatingElements count={10} minSize={15} maxSize={40} minOpacity={0.1} maxOpacity={0.3} />
+        <FloatingElements count={15} minSize={15} maxSize={40} minOpacity={0.2} maxOpacity={0.5} />
       </>
     );
   }, [shouldRenderAnimations]);

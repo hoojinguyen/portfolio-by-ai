@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 
+type Shape = 'circle' | 'square' | 'triangle' | 'hexagon' | 'star';
+
 interface FloatingElement {
   id: number;
   x: number;
@@ -11,7 +13,7 @@ interface FloatingElement {
   size: number;
   rotation: number;
   color: string;
-  shape: 'circle' | 'square' | 'triangle' | 'hexagon' | 'star';
+  shape: Shape;
   delay: number;
   duration: number;
   opacity: number;
@@ -30,6 +32,41 @@ interface FloatingElementsProps {
   areaSelector?: string;
 }
 
+// Generate a random shape SVG path - memoized to prevent unnecessary recalculations
+const getShapePath = (shape: Shape, size: number) => {
+  const halfSize = size / 2;
+
+  switch (shape) {
+    case 'circle':
+      return <circle cx={halfSize} cy={halfSize} r={halfSize} fill="currentColor" />;
+    case 'square':
+      return <rect x="0" y="0" width={size} height={size} fill="currentColor" />;
+    case 'triangle':
+      return <polygon points={`${halfSize},0 ${size},${size} 0,${size}`} fill="currentColor" />;
+    case 'hexagon':
+      const hexPoints = [];
+      for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i;
+        const x = halfSize + halfSize * Math.cos(angle);
+        const y = halfSize + halfSize * Math.sin(angle);
+        hexPoints.push(`${x},${y}`);
+      }
+      return <polygon points={hexPoints.join(' ')} fill="currentColor" />;
+    case 'star':
+      const starPoints = [];
+      for (let i = 0; i < 10; i++) {
+        const angle = (Math.PI / 5) * i - Math.PI / 2;
+        const radius = i % 2 === 0 ? halfSize : halfSize * 0.4;
+        const x = halfSize + radius * Math.cos(angle);
+        const y = halfSize + radius * Math.sin(angle);
+        starPoints.push(`${x},${y}`);
+      }
+      return <polygon points={starPoints.join(' ')} fill="currentColor" />;
+    default:
+      return <circle cx={halfSize} cy={halfSize} r={halfSize} fill="currentColor" />;
+  }
+};
+
 const FloatingElements: React.FC<FloatingElementsProps> = ({
   count = 15, // Reduced from original count
   minSize = 10,
@@ -47,44 +84,6 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
   const { theme } = useTheme();
   const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const isInitialRender = useRef(true);
-
-  // Generate a random shape SVG path - memoized to prevent unnecessary recalculations
-  const getShapePath = useMemo(
-    () => (shape: FloatingElement['shape'], size: number) => {
-      const halfSize = size / 2;
-
-      switch (shape) {
-        case 'circle':
-          return <circle cx={halfSize} cy={halfSize} r={halfSize} fill="currentColor" />;
-        case 'square':
-          return <rect x="0" y="0" width={size} height={size} fill="currentColor" />;
-        case 'triangle':
-          return <polygon points={`${halfSize},0 ${size},${size} 0,${size}`} fill="currentColor" />;
-        case 'hexagon':
-          const hexPoints = [];
-          for (let i = 0; i < 6; i++) {
-            const angle = (Math.PI / 3) * i;
-            const x = halfSize + halfSize * Math.cos(angle);
-            const y = halfSize + halfSize * Math.sin(angle);
-            hexPoints.push(`${x},${y}`);
-          }
-          return <polygon points={hexPoints.join(' ')} fill="currentColor" />;
-        case 'star':
-          const starPoints = [];
-          for (let i = 0; i < 10; i++) {
-            const angle = (Math.PI / 5) * i - Math.PI / 2;
-            const radius = i % 2 === 0 ? halfSize : halfSize * 0.4;
-            const x = halfSize + radius * Math.cos(angle);
-            const y = halfSize + radius * Math.sin(angle);
-            starPoints.push(`${x},${y}`);
-          }
-          return <polygon points={starPoints.join(' ')} fill="currentColor" />;
-        default:
-          return <circle cx={halfSize} cy={halfSize} r={halfSize} fill="currentColor" />;
-      }
-    },
-    []
-  );
 
   // Generate random elements - memoized based on dimensions and theme
   const generateElements = useMemo(() => {
