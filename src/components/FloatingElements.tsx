@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -31,7 +31,7 @@ interface FloatingElementsProps {
 }
 
 const FloatingElements: React.FC<FloatingElementsProps> = ({
-  count = 15,
+  count = 15, // Reduced from original count
   minSize = 10,
   maxSize = 50,
   minDuration = 15,
@@ -45,46 +45,52 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
   const [elements, setElements] = useState<FloatingElement[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
+  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isInitialRender = useRef(true);
 
-  // Generate a random shape SVG path
-  const getShapePath = (shape: FloatingElement['shape'], size: number) => {
-    const halfSize = size / 2;
+  // Generate a random shape SVG path - memoized to prevent unnecessary recalculations
+  const getShapePath = useMemo(
+    () => (shape: FloatingElement['shape'], size: number) => {
+      const halfSize = size / 2;
 
-    switch (shape) {
-      case 'circle':
-        return <circle cx={halfSize} cy={halfSize} r={halfSize} fill="currentColor" />;
-      case 'square':
-        return <rect x="0" y="0" width={size} height={size} fill="currentColor" />;
-      case 'triangle':
-        return <polygon points={`${halfSize},0 ${size},${size} 0,${size}`} fill="currentColor" />;
-      case 'hexagon':
-        const hexPoints = [];
-        for (let i = 0; i < 6; i++) {
-          const angle = (Math.PI / 3) * i;
-          const x = halfSize + halfSize * Math.cos(angle);
-          const y = halfSize + halfSize * Math.sin(angle);
-          hexPoints.push(`${x},${y}`);
-        }
-        return <polygon points={hexPoints.join(' ')} fill="currentColor" />;
-      case 'star':
-        const starPoints = [];
-        for (let i = 0; i < 10; i++) {
-          const angle = (Math.PI / 5) * i - Math.PI / 2;
-          const radius = i % 2 === 0 ? halfSize : halfSize * 0.4;
-          const x = halfSize + radius * Math.cos(angle);
-          const y = halfSize + radius * Math.sin(angle);
-          starPoints.push(`${x},${y}`);
-        }
-        return <polygon points={starPoints.join(' ')} fill="currentColor" />;
-      default:
-        return <circle cx={halfSize} cy={halfSize} r={halfSize} fill="currentColor" />;
-    }
-  };
+      switch (shape) {
+        case 'circle':
+          return <circle cx={halfSize} cy={halfSize} r={halfSize} fill="currentColor" />;
+        case 'square':
+          return <rect x="0" y="0" width={size} height={size} fill="currentColor" />;
+        case 'triangle':
+          return <polygon points={`${halfSize},0 ${size},${size} 0,${size}`} fill="currentColor" />;
+        case 'hexagon':
+          const hexPoints = [];
+          for (let i = 0; i < 6; i++) {
+            const angle = (Math.PI / 3) * i;
+            const x = halfSize + halfSize * Math.cos(angle);
+            const y = halfSize + halfSize * Math.sin(angle);
+            hexPoints.push(`${x},${y}`);
+          }
+          return <polygon points={hexPoints.join(' ')} fill="currentColor" />;
+        case 'star':
+          const starPoints = [];
+          for (let i = 0; i < 10; i++) {
+            const angle = (Math.PI / 5) * i - Math.PI / 2;
+            const radius = i % 2 === 0 ? halfSize : halfSize * 0.4;
+            const x = halfSize + radius * Math.cos(angle);
+            const y = halfSize + radius * Math.sin(angle);
+            starPoints.push(`${x},${y}`);
+          }
+          return <polygon points={starPoints.join(' ')} fill="currentColor" />;
+        default:
+          return <circle cx={halfSize} cy={halfSize} r={halfSize} fill="currentColor" />;
+      }
+    },
+    []
+  );
 
-  // Generate random elements
-  useEffect(() => {
-    // Move generateElements inside useEffect to avoid dependency issues
-    const generateElements = (containerWidth: number, containerHeight: number) => {
+  // Generate random elements - memoized based on dimensions and theme
+  const generateElements = useMemo(() => {
+    return (containerWidth: number, containerHeight: number) => {
+      if (containerWidth === 0 || containerHeight === 0) return [];
+
       const shapes: FloatingElement['shape'][] = [
         'circle',
         'square',
@@ -158,21 +164,6 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
 
       return newElements;
     };
-
-    const updateDimensions = () => {
-      if (!containerRef.current) return;
-
-      const container = document.querySelector(areaSelector) as HTMLElement;
-      if (!container) return;
-
-      const { width, height } = container.getBoundingClientRect();
-      setElements(generateElements(width, height));
-    };
-
-    updateDimensions();
-
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
   }, [
     count,
     minSize,
@@ -183,9 +174,48 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
     maxDelay,
     minOpacity,
     maxOpacity,
-    areaSelector,
     theme,
   ]);
+
+  useEffect(() => {
+    // Throttled resize handler to prevent excessive re-renders
+    const handleResize = () => {
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+
+      resizeTimeoutRef.current = setTimeout(() => {
+        const container = document.querySelector(areaSelector) as HTMLElement;
+        if (!container) return;
+
+        const { width, height } = container.getBoundingClientRect();
+        setElements(generateElements(width, height));
+      }, 200); // 200ms throttle
+    };
+
+    // Initial setup
+    const container = document.querySelector(areaSelector) as HTMLElement;
+    if (container) {
+      const { width, height } = container.getBoundingClientRect();
+      setElements(generateElements(width, height));
+    }
+
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+    };
+  }, [areaSelector, generateElements]);
+
+  // Skip initial animation if it's the first render
+  useEffect(() => {
+    isInitialRender.current = false;
+  }, []);
 
   return (
     <div
@@ -196,7 +226,7 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
       {elements.map(element => (
         <motion.div
           key={element.id}
-          className="absolute"
+          className="absolute will-change-transform"
           initial={{
             x: element.x,
             y: element.y,
@@ -204,14 +234,14 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
             opacity: 0,
           }}
           animate={{
-            x: [element.x, element.x + (Math.random() * 100 - 50)],
-            y: [element.y, element.y + (Math.random() * 100 - 50)],
-            rotate: [element.rotation, element.rotation + (Math.random() > 0.5 ? 360 : -360)],
+            x: [element.x, element.x + (Math.random() * 50 - 25)],
+            y: [element.y, element.y + (Math.random() * 50 - 25)],
+            rotate: [element.rotation, element.rotation + (Math.random() > 0.5 ? 180 : -180)],
             opacity: [0, element.opacity, 0],
           }}
           transition={{
             duration: element.duration,
-            delay: element.delay,
+            delay: isInitialRender.current ? 0 : element.delay,
             repeat: Infinity,
             repeatType: 'reverse',
             ease: 'easeInOut',
@@ -235,5 +265,7 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
     </div>
   );
 };
+
+FloatingElements.displayName = 'FloatingElements';
 
 export default FloatingElements;

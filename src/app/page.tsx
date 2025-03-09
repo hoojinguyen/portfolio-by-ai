@@ -1,129 +1,172 @@
 'use client';
 
-import AboutSection from '@/components/AboutSection';
-import ContactSection from '@/components/ContactSection';
-import CustomCursor from '@/components/CustomCursor';
-import FloatingActionButton from '@/components/FloatingActionButton';
-import FloatingElements from '@/components/FloatingElements';
+import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
+
+// Static imports for essential components
 import Navigation from '@/components/Navigation';
-import ParticleBackground from '@/components/ParticleBackground';
-import PortfolioSection from '@/components/PortfolioSection';
 import ProfileCard from '@/components/ProfileCard';
-import ResumeSection from '@/components/ResumeSection';
-import SpaceUniverse from '@/components/SpaceUniverse';
 import ThemeToggle from '@/components/ThemeToggle';
-import React, { useState } from 'react';
-import {
-  FaAws,
-  FaDocker,
-  FaGitAlt,
-  FaJsSquare,
-  FaNodeJs,
-  FaPython,
-  FaReact,
-  FaVuejs,
-} from 'react-icons/fa';
-import {
-  SiFirebase,
-  SiGraphql,
-  SiKubernetes,
-  SiMongodb,
-  SiNextdotjs,
-  SiNuxtdotjs,
-  SiPostgresql,
-  SiRedux,
-  SiTailwindcss,
-  SiTypescript,
-} from 'react-icons/si';
+import { RetroGrid } from '@/components/magicui/retro-grid';
+
+// Dynamic imports for heavy components
+const FloatingActionButton = dynamic(() => import('@/components/FloatingActionButton'), {
+  ssr: false,
+});
+
+// Lazy loaded content components
+const AboutSection = lazy(() => import('@/components/AboutSection'));
+const ResumeSection = lazy(() => import('@/components/ResumeSection'));
+const PortfolioSection = lazy(() => import('@/components/PortfolioSection'));
+const ContactSection = lazy(() => import('@/components/ContactSection'));
+
+// Conditionally loaded animation components
+const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
+const SpaceUniverse = dynamic(() => import('@/components/SpaceUniverse'), { ssr: false });
+const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), { ssr: false });
+const FloatingElements = dynamic(() => import('@/components/FloatingElements'), { ssr: false });
 
 // Import JSON data
-import { RetroGrid } from '@/components/magicui/retro-grid';
 import portfolioData from '@/config/portfolio.json';
 import profileData from '@/config/profile.json';
 import resumeData from '@/config/resume.json';
 import skillsData from '@/config/skills.json';
 
+// Import icons
+import { iconMap } from '@/lib/iconMap';
+
+// Loading component for Suspense fallback
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center p-8 min-h-[200px]">
+    <div className="animate-pulse bg-[var(--color-bg-tertiary)] rounded-lg p-4">
+      <div className="h-8 w-32 bg-[var(--color-bg-hover)] rounded mb-4"></div>
+      <div className="h-4 w-full bg-[var(--color-bg-hover)] rounded mb-2"></div>
+      <div className="h-4 w-3/4 bg-[var(--color-bg-hover)] rounded"></div>
+    </div>
+  </div>
+);
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState('about');
+  const [isMounted, setIsMounted] = useState(false);
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
 
-  // Map skill icons to their components
-  const iconComponents: { [key: string]: React.ReactNode } = {
-    FaReact: <FaReact className="text-3xl" />,
-    FaNodeJs: <FaNodeJs className="text-3xl" />,
-    FaJsSquare: <FaJsSquare className="text-3xl" />,
-    FaPython: <FaPython className="text-3xl" />,
-    FaAws: <FaAws className="text-3xl" />,
-    FaDocker: <FaDocker className="text-3xl" />,
-    FaGitAlt: <FaGitAlt className="text-3xl" />,
-    SiTypescript: <SiTypescript className="text-3xl" />,
-    SiTailwindcss: <SiTailwindcss className="text-3xl" />,
-    SiMongodb: <SiMongodb className="text-3xl" />,
-    SiGraphql: <SiGraphql className="text-3xl" />,
-    SiRedux: <SiRedux className="text-3xl" />,
-    SiNextdotjs: <SiNextdotjs className="text-3xl" />,
-    SiNuxtdotjs: <SiNuxtdotjs className="text-3xl" />,
-    FaVuejs: <FaVuejs className="text-3xl" />,
-    SiKubernetes: <SiKubernetes className="text-3xl" />,
-    SiPostgresql: <SiPostgresql className="text-3xl" />,
-    SiFirebase: <SiFirebase className="text-3xl" />,
-  };
+  // Handle mounting, reduced motion preference, and screen size detection
+  useEffect(() => {
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setIsReducedMotion(mediaQuery.matches);
 
-  // Map skill data with icons
-  const skills = skillsData.skills.map(skill => ({
-    ...skill,
-    icon: iconComponents[skill.iconType],
-  }));
+    // Set up event listeners
+    const handleReducedMotionChange = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'about':
-        return (
-          <div className="space-y-8">
-            <AboutSection
-              aboutText={profileData.aboutText}
-              passionText={profileData.passionText}
-              skills={skills}
-            />
-          </div>
-        );
-      case 'resume':
-        return (
-          <ResumeSection education={resumeData.education} experience={resumeData.experience} />
-        );
-      case 'portfolio':
-        return <PortfolioSection projects={portfolioData.projects} />;
-      case 'contact':
-        return <ContactSection />;
-      default:
-        return null;
-    }
-  };
+    // Add event listeners
+    mediaQuery.addEventListener('change', handleReducedMotionChange);
+
+    // Set mounted state
+    setIsMounted(true);
+
+    // Clean up event listeners
+    return () => {
+      mediaQuery.removeEventListener('change', handleReducedMotionChange);
+    };
+  }, []);
+
+  // Memoize skills data to prevent unnecessary re-renders
+  const skills = useMemo(() => {
+    return skillsData.skills.map(skill => ({
+      ...skill,
+      icon: iconMap[skill.iconType],
+    }));
+  }, []);
+
+  // Memoize content rendering to prevent unnecessary re-renders
+  const renderContent = useMemo(() => {
+    // Only render content when component is mounted
+    if (!isMounted) return <LoadingFallback />;
+
+    return (
+      <Suspense fallback={<LoadingFallback />}>
+        {(() => {
+          switch (activeTab) {
+            case 'about':
+              return (
+                <div className="space-y-8">
+                  <AboutSection
+                    aboutText={profileData.aboutText}
+                    passionText={profileData.passionText}
+                    skills={skills}
+                  />
+                </div>
+              );
+            case 'resume':
+              return (
+                <ResumeSection
+                  education={resumeData.education}
+                  experience={resumeData.experience}
+                />
+              );
+            case 'portfolio':
+              return <PortfolioSection projects={portfolioData.projects} />;
+            case 'contact':
+              return <ContactSection />;
+            default:
+              return null;
+          }
+        })()}
+      </Suspense>
+    );
+  }, [activeTab, isMounted, skills]);
+
+  // Only render animations when component is mounted, user doesn't prefer reduced motion, and we're on desktop
+  const shouldRenderAnimations = isMounted && !isReducedMotion;
+
+  // Memoize animation components to prevent unnecessary re-renders
+  const animationComponents = useMemo(() => {
+    if (!shouldRenderAnimations) return null;
+
+    return (
+      <>
+        <RetroGrid opacity={0.2} />
+
+        {/* Custom cursor - only on desktop */}
+        {<CustomCursor />}
+
+        {/* Space Universe background - reduced element count */}
+        <SpaceUniverse
+          starCount={150}
+          planetCount={2}
+          galaxyCount={1}
+          cometCount={1}
+          minStarSize={1}
+          maxStarSize={3}
+          minOpacity={0.3}
+          maxOpacity={0.8}
+          depth={true}
+        />
+
+        {/* Particle background */}
+        <ParticleBackground />
+
+        {/* Floating elements - reduced count */}
+        <FloatingElements count={10} minSize={15} maxSize={40} minOpacity={0.1} maxOpacity={0.3} />
+      </>
+    );
+  }, [shouldRenderAnimations]);
+
+  // If not mounted yet, show minimal UI
+  if (!isMounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg-primary)]">
+        <LoadingFallback />
+      </div>
+    );
+  }
 
   return (
     <>
-      <RetroGrid opacity={0.2} />
-
-      {/* Custom cursor */}
-      <CustomCursor />
-
-      {/* Space Universe background */}
-      <SpaceUniverse
-        starCount={150}
-        planetCount={4}
-        galaxyCount={2}
-        cometCount={3}
-        minStarSize={1}
-        maxStarSize={3}
-        minOpacity={0.3}
-        maxOpacity={0.8}
-        depth={true}
-      />
-
-      {/* Particle background */}
-      <ParticleBackground />
-
-      {/* Floating elements for visual interest */}
-      <FloatingElements count={20} minSize={15} maxSize={40} minOpacity={0.1} maxOpacity={0.3} />
+      {/* Render animation components conditionally */}
+      {animationComponents}
 
       <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
         <div className="max-w-7xl mx-auto">
@@ -139,7 +182,7 @@ export default function Home() {
             {/* Right Column - Content */}
             <div className="space-y-8">
               <Navigation activeTab={activeTab} onTabChange={setActiveTab} />
-              {renderContent()}
+              {renderContent}
             </div>
           </div>
         </div>

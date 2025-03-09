@@ -18,6 +18,7 @@ const ParticleBackground: React.FC = () => {
   const { theme } = useTheme();
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number>(0);
+  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,27 +27,34 @@ const ParticleBackground: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Set canvas to full window size
+    // Set canvas to full window size with throttled resize
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
+
+      resizeTimeoutRef.current = setTimeout(() => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
+      }, 200); // 200ms throttle
     };
 
     // Initialize particles
     const initParticles = () => {
-      const particleCount = Math.min(Math.floor(window.innerWidth / 20), 100); // Responsive particle count
+      // Reduce particle count for better performance
+      const particleCount = Math.min(Math.floor(window.innerWidth / 30), 60); // Reduced from 100
       particlesRef.current = [];
 
       // Create particles
       for (let i = 0; i < particleCount; i++) {
-        const size = Math.random() * 3 + 1;
+        const size = Math.random() * 2 + 1; // Smaller particles
         particlesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
           size,
-          speedX: (Math.random() - 0.5) * 0.5,
-          speedY: (Math.random() - 0.5) * 0.5,
+          speedX: (Math.random() - 0.5) * 0.3, // Reduced speed
+          speedY: (Math.random() - 0.5) * 0.3, // Reduced speed
           color:
             theme === 'dark'
               ? `rgba(${Math.floor(Math.random() * 100 + 155)}, ${Math.floor(
@@ -83,17 +91,14 @@ const ParticleBackground: React.FC = () => {
       });
 
       // Connect particles with lines if they're close enough
-      connectParticles(ctx);
-
-      animationFrameRef.current = requestAnimationFrame(animate);
-    };
-
-    // Draw lines between nearby particles
-    const connectParticles = (ctx: CanvasRenderingContext2D) => {
-      const maxDistance = 150;
-
-      for (let i = 0; i < particlesRef.current.length; i++) {
-        for (let j = i + 1; j < particlesRef.current.length; j++) {
+      // Only connect particles that are within a reasonable distance to reduce calculations
+      const maxDistance = 120; // Reduced from 150
+      const particleCount = particlesRef.current.length;
+      
+      for (let i = 0; i < particleCount; i++) {
+        // Only check a subset of particles to improve performance
+        const checkLimit = Math.min(i + 10, particleCount);
+        for (let j = i + 1; j < checkLimit; j++) {
           const p1 = particlesRef.current[i];
           const p2 = particlesRef.current[j];
 
@@ -108,15 +113,17 @@ const ParticleBackground: React.FC = () => {
             ctx.beginPath();
             ctx.strokeStyle =
               theme === 'dark'
-                ? `rgba(100, 100, 255, ${opacity * 0.15})`
-                : `rgba(100, 100, 200, ${opacity * 0.1})`;
-            ctx.lineWidth = 1;
+                ? `rgba(100, 100, 255, ${opacity * 0.12})` // Reduced opacity
+                : `rgba(100, 100, 200, ${opacity * 0.08})` // Reduced opacity
+            ctx.lineWidth = 0.5; // Thinner lines
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
           }
         }
       }
+
+      animationFrameRef.current = requestAnimationFrame(animate);
     };
 
     // Set up canvas and start animation
@@ -127,6 +134,9 @@ const ParticleBackground: React.FC = () => {
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (resizeTimeoutRef.current) {
+        clearTimeout(resizeTimeoutRef.current);
+      }
       cancelAnimationFrame(animationFrameRef.current);
     };
   }, [theme]);
