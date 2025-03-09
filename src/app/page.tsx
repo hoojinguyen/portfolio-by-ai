@@ -35,16 +35,11 @@ import skillsData from '@/config/skills.json';
 // Import icons
 import { iconMap } from '@/lib/iconMap';
 
+// Import SimpleLoader for Suspense fallback
+import SimpleLoader from '@/components/SimpleLoader';
+
 // Loading component for Suspense fallback
-const LoadingFallback = () => (
-  <div className="flex items-center justify-center p-8 min-h-[200px]">
-    <div className="animate-pulse bg-[var(--color-bg-tertiary)] rounded-lg p-4">
-      <div className="h-8 w-32 bg-[var(--color-bg-hover)] rounded mb-4"></div>
-      <div className="h-4 w-full bg-[var(--color-bg-hover)] rounded mb-2"></div>
-      <div className="h-4 w-3/4 bg-[var(--color-bg-hover)] rounded"></div>
-    </div>
-  </div>
-);
+const LoadingFallback = () => <SimpleLoader dotCount={10} dotSize={8} circleSize={60} />;
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('about');
@@ -83,7 +78,12 @@ export default function Home() {
   // Memoize content rendering to prevent unnecessary re-renders
   const renderContent = useMemo(() => {
     // Only render content when component is mounted
-    if (!isMounted) return <LoadingFallback />;
+    if (!isMounted)
+      return (
+        <div className="fixed inset-0 w-screen h-screen flex items-center justify-center bg-[var(--color-bg-primary)] z-50">
+          <LoadingFallback />
+        </div>
+      );
 
     return (
       <Suspense fallback={<LoadingFallback />}>
@@ -157,7 +157,7 @@ export default function Home() {
   // If not mounted yet, show minimal UI
   if (!isMounted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[var(--color-bg-primary)]">
+      <div className="fixed inset-0 w-screen h-screen flex items-center justify-center bg-[var(--color-bg-primary)] z-50">
         <LoadingFallback />
       </div>
     );
