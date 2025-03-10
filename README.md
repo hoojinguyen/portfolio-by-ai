@@ -9,6 +9,8 @@ A modern, responsive portfolio website completely designed and developed with AI
 - **Tailwind CSS 4** - Utility-first CSS framework
 - **Framer Motion** - Animation library for React
 - **TypeScript** - Static type checking
+- **[MagicUI](https://magicui.design/docs)** - Modern UI component library with beautiful animations and effects
+- **[ArtifactUI](https://artifactui.in/docs)** - Advanced animation and UI effects library
 
 ## ✨ Features
 
