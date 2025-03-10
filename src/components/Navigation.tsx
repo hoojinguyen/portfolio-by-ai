@@ -171,7 +171,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
           opacity: isMobileMenuOpen ? 1 : 0,
         }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="md:hidden overflow-hidden mt-4"
+        className="md:hidden overflow-hidden mt-0"
       >
         <ul className="flex flex-col gap-3">
           {navItems.map(item => {
