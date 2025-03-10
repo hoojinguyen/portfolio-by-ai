@@ -43,133 +43,281 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   twitter,
 }) => {
   return (
-    <TiltEffect rotationIntensity={10} glareOpacity={0.15} scale={1.02} className="w-full max-w-xs">
-      <div className="bg-[var(--color-bg-secondary)] rounded-lg p-6 flex flex-col items-center shadow-[0_24px_80px_var(--color-shadow)] w-full max-w-xs border border-[var(--color-border-primary)] max-h-fit sticky top-10">
-        <div className="relative mb-4">
-          <div className="w-32 h-32 rounded-2xl overflow-hidden bg-[var(--color-bg-tertiary)] relative">
-            {avatarUrl ? (
-              <Image src={avatarUrl} alt={name} fill className="object-cover" priority />
-            ) : (
-              <div className="w-full h-full bg-[var(--color-bg-tertiary)] flex items-center justify-center text-[var(--color-text-tertiary)]">
-                <span className="text-3xl">👤</span>
-              </div>
-            )}
+    <TiltEffect
+      rotationIntensity={10}
+      glareOpacity={0.15}
+      scale={1.02}
+      className="w-full max-w-full sm:max-w-xs md:max-w-xs"
+    >
+      {/* Desktop version - only visible on large screens */}
+      <div className="hidden lg:flex lg:flex-col bg-[var(--color-bg-secondary)] rounded-xl p-6 shadow-[0_24px_80px_var(--color-shadow)] w-full border border-[var(--color-border-primary)] max-h-fit sticky top-10">
+        {/* Avatar - larger for desktop */}
+        <div className="flex flex-col items-center mb-6">
+          <div className="relative mb-4">
+            <div className="w-32 h-32 rounded-full overflow-hidden bg-[var(--color-bg-tertiary)] relative border-2 border-[var(--color-accent-primary)]/30 shadow-lg">
+              {avatarUrl ? (
+                <Image src={avatarUrl} alt={name} fill className="object-cover" priority />
+              ) : (
+                <div className="w-full h-full bg-[var(--color-bg-tertiary)] flex items-center justify-center text-[var(--color-text-tertiary)]">
+                  <span className="text-3xl">👤</span>
+                </div>
+              )}
+            </div>
+            <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-[var(--color-bg-secondary)] shadow-md"></div>
           </div>
-          <div className="absolute bottom-1 right-1 w-3 h-3 bg-green-500 rounded-full"></div>
+
+          {/* Name and title - centered for desktop */}
+          <h2 className="text-2xl font-bold mb-1 text-center bg-gradient-to-r from-[var(--color-accent-tertiary)] via-[var(--color-accent-secondary)] to-[var(--color-accent-primary)] text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
+            {name}
+          </h2>
+          <p className="text-sm mb-2 text-center bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
+            {title}
+          </p>
+          <div className="flex items-center justify-center space-x-3 mb-2">
+            <span className="text-[var(--color-text-tertiary)]">👨‍💻</span>
+            <span className="text-[var(--color-text-tertiary)]">⚽️</span>
+            <span className="text-[var(--color-text-tertiary)]">🏸</span>
+            <span className="text-[var(--color-text-tertiary)]">🎧</span>
+            <span className="text-[var(--color-text-tertiary)]">🕺</span>
+          </div>
         </div>
 
-        <h2 className="text-xl font-bold mb-2 bg-gradient-to-r from-[var(--color-accent-tertiary)] via-[var(--color-accent-secondary)] to-[var(--color-accent-primary)] text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
-          {name}
-        </h2>
-        <p className="text-sm mb-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
-          {title}
-        </p>
-        <p className="text-[var(--color-text-tertiary)] text-sm mb-4">👨‍💻 | ⚽️ | 🏸 | 🎧 | 🕺</p>
+        {/* Divider */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[var(--color-border-secondary)] to-transparent mb-4"></div>
 
-        <div className="w-full space-y-4 text-sm mt-2">
-          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300 transform hover:translate-x-1">
-            <div className="mr-3 p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 transition-all duration-300">
-              <FaMapMarkerAlt className="text-base text-[var(--color-text-tertiary)] group-hover:text-[var(--color-accent-secondary)] transition-colors" />
+        {/* Contact information - standard layout for desktop */}
+        <div className="w-full grid grid-cols-1 gap-3 mb-4">
+          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300">
+            <div className="mr-3 p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 transition-all duration-300 shadow-sm">
+              <FaMapMarkerAlt className="text-[var(--color-accent-primary)]" />
             </div>
-            <span className="break-words group-hover:text-[var(--color-text-primary)]">
-              {location}
-            </span>
+            <span>{location}</span>
           </div>
 
-          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300 transform hover:translate-x-1">
-            <div className="mr-3 p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-blue-500/20 to-cyan-500/20 transition-all duration-300">
-              <FaEnvelope className="text-base text-[var(--color-text-tertiary)] group-hover:text-cyan-400 transition-colors" />
+          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300">
+            <div className="mr-3 p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 transition-all duration-300 shadow-sm">
+              <FaEnvelope className="text-[var(--color-accent-secondary)]" />
             </div>
-            <a
-              href={`mailto:${email}`}
-              className="break-words hover:text-[var(--color-text-primary)] transition-all duration-300"
-            >
+            <a href={`mailto:${email}`} className="hover:underline">
               {email}
             </a>
           </div>
 
-          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300 transform hover:translate-x-1">
-            <div className="mr-3 p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-green-500/20 to-emerald-500/20 transition-all duration-300">
-              <FaPhone className="text-base text-[var(--color-text-tertiary)] group-hover:text-emerald-400 transition-colors" />
+          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300">
+            <div className="mr-3 p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 transition-all duration-300 shadow-sm">
+              <FaPhone className="text-[var(--color-accent-tertiary)]" />
             </div>
-            <a
-              href={`tel:${phone}`}
-              className="break-words hover:text-[var(--color-text-primary)] transition-all duration-300"
-            >
+            <a href={`tel:${phone}`} className="hover:underline">
               {phone}
             </a>
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="flex space-x-3 mt-6">
-          {github && (
-            <a
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-[var(--color-bg-tertiary)]/50 text-[var(--color-text-tertiary)] hover:text-[var(--color-accent-primary)] hover:bg-[var(--color-bg-tertiary)] transition-all duration-300 transform hover:scale-110"
-              aria-label="GitHub"
-            >
-              <FaGithub />
-            </a>
-          )}
-          {linkedin && (
-            <a
-              href={linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-[var(--color-bg-tertiary)]/50 text-[var(--color-text-tertiary)] hover:text-[#0077b5] hover:bg-[var(--color-bg-tertiary)] transition-all duration-300 transform hover:scale-110"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin />
-            </a>
-          )}
-          {facebook && (
-            <a
-              href={facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-[var(--color-bg-tertiary)]/50 text-[var(--color-text-tertiary)] hover:text-[#1877f2] hover:bg-[var(--color-bg-tertiary)] transition-all duration-300 transform hover:scale-110"
-              aria-label="Facebook"
-            >
-              <FaFacebook />
-            </a>
-          )}
-          {instagram && (
-            <a
-              href={instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-[var(--color-bg-tertiary)]/50 text-[var(--color-text-tertiary)] hover:text-[#e1306c] hover:bg-[var(--color-bg-tertiary)] transition-all duration-300 transform hover:scale-110"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-          )}
-          {thread && (
-            <a
-              href={thread}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-[var(--color-bg-tertiary)]/50 text-[var(--color-text-tertiary)] hover:text-[#000000] hover:bg-[var(--color-bg-tertiary)] transition-all duration-300 transform hover:scale-110"
-              aria-label="Thread"
-            >
-              <SiThreads />
-            </a>
-          )}
-          {twitter && (
-            <a
-              href={twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-[var(--color-bg-tertiary)]/50 text-[var(--color-text-tertiary)] hover:text-[#1da1f2] hover:bg-[var(--color-bg-tertiary)] transition-all duration-300 transform hover:scale-110"
-              aria-label="Twitter"
-            >
-              <FaTwitter />
-            </a>
-          )}
+        {/* Social media links for desktop */}
+        {(github || linkedin || facebook || instagram || thread || twitter) && (
+          <>
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-[var(--color-border-secondary)] to-transparent mb-4"></div>
+            <div className="flex justify-center space-x-4 w-full">
+              {github && (
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaGithub />
+                </a>
+              )}
+              {linkedin && (
+                <a
+                  href={linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaLinkedin />
+                </a>
+              )}
+              {facebook && (
+                <a
+                  href={facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaFacebook />
+                </a>
+              )}
+              {instagram && (
+                <a
+                  href={instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaInstagram />
+                </a>
+              )}
+              {thread && (
+                <a
+                  href={thread}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <SiThreads />
+                </a>
+              )}
+              {twitter && (
+                <a
+                  href={twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaTwitter />
+                </a>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Mobile version - only visible on small to medium screens */}
+      <div className="lg:hidden bg-[var(--color-bg-secondary)] rounded-xl p-3 sm:p-5 flex flex-col items-center shadow-[0_24px_80px_var(--color-shadow)] w-full border border-[var(--color-border-primary)] max-h-fit sticky top-10">
+        {/* Header section with avatar and basic info */}
+        <div className="flex items-center w-full mb-2 sm:mb-3">
+          {/* Smaller avatar */}
+          <div className="relative mr-3 flex-shrink-0">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden bg-[var(--color-bg-tertiary)] relative border-2 border-[var(--color-accent-primary)]/30 shadow-lg">
+              {avatarUrl ? (
+                <Image src={avatarUrl} alt={name} fill className="object-cover" priority />
+              ) : (
+                <div className="w-full h-full bg-[var(--color-bg-tertiary)] flex items-center justify-center text-[var(--color-text-tertiary)]">
+                  <span className="text-xl">👤</span>
+                </div>
+              )}
+            </div>
+            <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-[var(--color-bg-secondary)] shadow-md"></div>
+          </div>
+
+          {/* Name, title and interests */}
+          <div className="flex-1">
+            <h2 className="text-lg sm:text-xl font-bold mb-0.5 bg-gradient-to-r from-[var(--color-accent-tertiary)] via-[var(--color-accent-secondary)] to-[var(--color-accent-primary)] text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
+              {name}
+            </h2>
+            <p className="text-xs sm:text-sm mb-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 text-transparent bg-clip-text hover:scale-105 transform transition-transform duration-200 ease-in-out">
+              {title}
+            </p>
+            <div className="flex items-center space-x-2">
+              <span className="text-[var(--color-text-tertiary)] text-xs">👨‍💻</span>
+              <span className="text-[var(--color-text-tertiary)] text-xs">⚽️</span>
+              <span className="text-[var(--color-text-tertiary)] text-xs">🏸</span>
+              <span className="text-[var(--color-text-tertiary)] text-xs">🎧</span>
+              <span className="text-[var(--color-text-tertiary)] text-xs">🕺</span>
+            </div>
+          </div>
         </div>
+
+        {/* Thin divider */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-[var(--color-border-secondary)] to-transparent mb-2.5"></div>
+
+        {/* Contact information in a more compact layout */}
+        <div className="w-full grid grid-cols-1 gap-2 text-xs mb-2.5">
+          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300 transform hover:translate-x-1">
+            <div className="mr-2 p-1.5 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 transition-all duration-300 shadow-sm">
+              <FaMapMarkerAlt className="text-[var(--color-accent-primary)]" />
+            </div>
+            <span>{location}</span>
+          </div>
+
+          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300 transform hover:translate-x-1">
+            <div className="mr-2 p-1.5 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 transition-all duration-300 shadow-sm">
+              <FaEnvelope className="text-[var(--color-accent-secondary)]" />
+            </div>
+            <a href={`mailto:${email}`} className="hover:underline">
+              {email}
+            </a>
+          </div>
+
+          <div className="flex items-center text-[var(--color-text-secondary)] group hover:text-[var(--color-text-primary)] transition-all duration-300 transform hover:translate-x-1">
+            <div className="mr-2 p-1.5 rounded-lg bg-[var(--color-bg-tertiary)]/50 group-hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 transition-all duration-300 shadow-sm">
+              <FaPhone className="text-[var(--color-accent-tertiary)]" />
+            </div>
+            <a href={`tel:${phone}`} className="hover:underline">
+              {phone}
+            </a>
+          </div>
+        </div>
+
+        {/* Social media links */}
+        {(github || linkedin || facebook || instagram || thread || twitter) && (
+          <>
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-[var(--color-border-secondary)] to-transparent mb-2.5"></div>
+            <div className="flex justify-center space-x-3 w-full">
+              {github && (
+                <a
+                  href={github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaGithub />
+                </a>
+              )}
+              {linkedin && (
+                <a
+                  href={linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaLinkedin />
+                </a>
+              )}
+              {facebook && (
+                <a
+                  href={facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaFacebook />
+                </a>
+              )}
+              {instagram && (
+                <a
+                  href={instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaInstagram />
+                </a>
+              )}
+              {thread && (
+                <a
+                  href={thread}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <SiThreads />
+                </a>
+              )}
+              {twitter && (
+                <a
+                  href={twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20 text-[var(--color-text-secondary)] hover:text-[var(--color-accent-primary)] transition-all duration-300 hover:scale-110"
+                >
+                  <FaTwitter />
+                </a>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </TiltEffect>
   );
