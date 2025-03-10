@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import { FaChartLine, FaCode } from 'react-icons/fa';
-import ScrollReveal from './ScrollReveal';
+import ScrollReveal from './animations/ScrollReveal';
 
 interface AboutSectionProps {
   aboutText: string;

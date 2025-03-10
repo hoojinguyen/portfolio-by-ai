@@ -94,7 +94,7 @@ const ParticleBackground: React.FC = () => {
       // Only connect particles that are within a reasonable distance to reduce calculations
       const maxDistance = 120; // Reduced from 150
       const particleCount = particlesRef.current.length;
-      
+
       for (let i = 0; i < particleCount; i++) {
         // Only check a subset of particles to improve performance
         const checkLimit = Math.min(i + 10, particleCount);
@@ -114,7 +114,7 @@ const ParticleBackground: React.FC = () => {
             ctx.strokeStyle =
               theme === 'dark'
                 ? `rgba(100, 100, 255, ${opacity * 0.12})` // Reduced opacity
-                : `rgba(100, 100, 200, ${opacity * 0.08})` // Reduced opacity
+                : `rgba(100, 100, 200, ${opacity * 0.08})`; // Reduced opacity
             ctx.lineWidth = 0.5; // Thinner lines
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);

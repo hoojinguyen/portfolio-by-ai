@@ -13,7 +13,7 @@ import {
   FaMoon,
 } from 'react-icons/fa';
 import { SiThreads } from 'react-icons/si';
-import TiltEffect from './TiltEffect';
+import TiltEffect from './animations/TiltEffect';
 import { useTheme } from '@/context/ThemeContext';
 
 // Define keyframes for the pulsing animation

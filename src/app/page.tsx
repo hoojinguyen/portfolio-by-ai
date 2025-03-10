@@ -10,7 +10,7 @@ import ProfileCard from '@/components/ProfileCard';
 import { RetroGrid } from '@/components/magicui/retro-grid';
 
 // Dynamic imports for heavy components
-const FloatingActionButton = dynamic(() => import('@/components/FloatingActionButton'), {
+const FloatingActionButton = dynamic(() => import('@/components/animations/FloatingActionButton'), {
   ssr: false,
 });
 
@@ -21,10 +21,16 @@ const PortfolioSection = lazy(() => import('@/components/PortfolioSection'));
 const ContactSection = lazy(() => import('@/components/ContactSection'));
 
 // Conditionally loaded animation components
-const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: false });
-const SpaceUniverse = dynamic(() => import('@/components/SpaceUniverse'), { ssr: false });
-const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), { ssr: false });
-const FloatingElements = dynamic(() => import('@/components/FloatingElements'), { ssr: false });
+const CustomCursor = dynamic(() => import('@/components/animations/CustomCursor'), { ssr: false });
+const SpaceUniverse = dynamic(() => import('@/components/animations/SpaceUniverse'), {
+  ssr: false,
+});
+const ParticleBackground = dynamic(() => import('@/components/animations/ParticleBackground'), {
+  ssr: false,
+});
+const FloatingElements = dynamic(() => import('@/components/animations/FloatingElements'), {
+  ssr: false,
+});
 const ParticleVeil = dynamic(() => import('@/components/artifactui/particle-veil'), { ssr: false });
 
 // Import JSON data
@@ -130,10 +136,8 @@ export default function Home() {
       <>
         <RetroGrid opacity={0.2} />
 
-        {/* Custom cursor - only on desktop */}
         {<CustomCursor />}
 
-        {/* Space Universe background - reduced element count */}
         <SpaceUniverse
           starCount={250}
           planetCount={2}
@@ -146,10 +150,8 @@ export default function Home() {
           depth={true}
         />
 
-        {/* Particle background */}
         <ParticleBackground />
 
-        {/* Floating elements - reduced count */}
         <FloatingElements count={15} minSize={15} maxSize={40} minOpacity={0.2} maxOpacity={0.5} />
 
         <ParticleVeil
