@@ -13,6 +13,29 @@ import {
 import { SiThreads } from 'react-icons/si';
 import TiltEffect from './TiltEffect';
 
+// Define keyframes for the pulsing animation
+const pulseAnimation = `
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(72, 187, 120, 0.7);
+      opacity: 0.8;
+    }
+    
+    70% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 6px rgba(72, 187, 120, 0);
+      opacity: 1;
+    }
+    
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(72, 187, 120, 0);
+      opacity: 0.8;
+    }
+  }
+`;
+
 interface ProfileCardProps {
   name: string;
   title: string;
@@ -63,7 +86,17 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                 </div>
               )}
             </div>
-            <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-[var(--color-bg-secondary)] shadow-md"></div>
+            <div
+              className="absolute bottom-0 right-0 w-4 h-4 bg-green-500 rounded-full border-2 border-[var(--color-bg-secondary)] shadow-md"
+              style={{
+                animation: 'pulse 2s infinite',
+                transform: 'translate(25%, 25%)',
+                zIndex: 10,
+                bottom: '10px',
+                right: '10px',
+              }}
+            ></div>
+            <style jsx>{pulseAnimation}</style>
           </div>
 
           {/* Name and title - centered for desktop */}
@@ -198,7 +231,17 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
                 </div>
               )}
             </div>
-            <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-[var(--color-bg-secondary)] shadow-md"></div>
+            <div
+              className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-[var(--color-bg-secondary)] shadow-md"
+              style={{
+                animation: 'pulse 2s infinite',
+                transform: 'translate(25%, 25%)',
+                zIndex: 10,
+                bottom: '4px',
+                right: '4px',
+              }}
+            ></div>
+            <style jsx>{pulseAnimation}</style>
           </div>
 
           {/* Name, title and interests */}
