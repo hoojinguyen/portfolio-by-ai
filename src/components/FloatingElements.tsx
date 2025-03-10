@@ -265,6 +265,4 @@ const FloatingElements: React.FC<FloatingElementsProps> = ({
   );
 };
 
-FloatingElements.displayName = 'FloatingElements';
-
 export default FloatingElements;
