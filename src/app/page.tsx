@@ -25,6 +25,7 @@ const CustomCursor = dynamic(() => import('@/components/CustomCursor'), { ssr: f
 const SpaceUniverse = dynamic(() => import('@/components/SpaceUniverse'), { ssr: false });
 const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), { ssr: false });
 const FloatingElements = dynamic(() => import('@/components/FloatingElements'), { ssr: false });
+const ParticleVeil = dynamic(() => import('@/components/artifactui/particle-veil'), { ssr: false });
 
 // Import JSON data
 import portfolioData from '@/config/portfolio.json';
@@ -150,6 +151,14 @@ export default function Home() {
 
         {/* Floating elements - reduced count */}
         <FloatingElements count={15} minSize={15} maxSize={40} minOpacity={0.2} maxOpacity={0.5} />
+
+        <ParticleVeil
+          particleCount={100}
+          interactionRadius={100}
+          speed={0.5}
+          sizeRange={[2, 5]}
+          className="fixed inset-0 pointer-events-none overflow-hidden z-0"
+        />
       </>
     );
   }, [shouldRenderAnimations]);
