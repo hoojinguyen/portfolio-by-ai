@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, lazy, Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 
 // Static imports for essential components
 import Navigation from '@/components/Navigation';
 import ProfileCard from '@/components/ProfileCard';
 
+import { AppleHelloVietnameseEffect } from '@/components/magicui/apple-hello-effect';
 import { RetroGrid } from '@/components/magicui/retro-grid';
 
 // Dynamic imports for heavy components
@@ -52,6 +53,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('about');
   const [isMounted, setIsMounted] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const [hello, setHello] = useState(false);
 
   // Handle mounting, reduced motion preference, and screen size detection
   useEffect(() => {
@@ -129,14 +131,14 @@ export default function Home() {
   const shouldRenderAnimations = isMounted && !isReducedMotion;
 
   // Memoize animation components to prevent unnecessary re-renders
-  const animationComponents = useMemo(() => {
+  const backgroundAnimations = useMemo(() => {
     if (!shouldRenderAnimations) return null;
 
     return (
       <>
         <RetroGrid opacity={0.2} />
 
-        {<CustomCursor />}
+        <CustomCursor />
 
         <SpaceUniverse
           starCount={250}
@@ -155,8 +157,8 @@ export default function Home() {
         <FloatingElements count={15} minSize={15} maxSize={40} minOpacity={0.2} maxOpacity={0.5} />
 
         <ParticleVeil
-          particleCount={100}
-          interactionRadius={100}
+          particleCount={80}
+          interactionRadius={80}
           speed={0.5}
           sizeRange={[2, 5]}
           className="fixed inset-0 pointer-events-none overflow-hidden z-0"
@@ -165,11 +167,17 @@ export default function Home() {
     );
   }, [shouldRenderAnimations]);
 
-  // If not mounted yet, show minimal UI
-  if (!isMounted) {
+  if (!hello) {
     return (
       <div className="fixed inset-0 w-screen h-screen flex items-center justify-center bg-[var(--color-bg-primary)] z-50">
-        <LoadingFallback />
+        <AppleHelloVietnameseEffect onAnimationComplete={() => setHello(true)} speed={1.5} />
+        <ParticleVeil
+          particleCount={250}
+          interactionRadius={250}
+          speed={1}
+          sizeRange={[2, 5]}
+          className="fixed inset-0 pointer-events-none overflow-hidden z-0"
+        />
       </div>
     );
   }
@@ -177,7 +185,7 @@ export default function Home() {
   return (
     <>
       {/* Render animation components conditionally */}
-      {animationComponents}
+      {backgroundAnimations}
 
       <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
         <div className="max-w-7xl mx-auto">
