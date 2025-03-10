@@ -9,9 +9,12 @@ import {
   FaMapMarkerAlt,
   FaPhone,
   FaTwitter,
+  FaSun,
+  FaMoon,
 } from 'react-icons/fa';
 import { SiThreads } from 'react-icons/si';
 import TiltEffect from './TiltEffect';
+import { useTheme } from '@/context/ThemeContext';
 
 // Define keyframes for the pulsing animation
 const pulseAnimation = `
@@ -65,6 +68,8 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   thread,
   twitter,
 }) => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <TiltEffect
       rotationIntensity={10}
@@ -73,7 +78,36 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       className="w-full max-w-full sm:max-w-xs md:max-w-xs"
     >
       {/* Desktop version - only visible on large screens */}
-      <div className="hidden lg:flex lg:flex-col bg-[var(--color-bg-secondary)] rounded-xl p-6 shadow-[0_24px_80px_var(--color-shadow)] w-full border border-[var(--color-border-primary)] max-h-fit sticky top-10">
+      <div className="hidden lg:flex lg:flex-col bg-[var(--color-bg-secondary)] rounded-xl p-6 shadow-[0_24px_80px_var(--color-shadow)] w-full border border-[var(--color-border-primary)] max-h-fit sticky top-10 relative">
+        {/* Theme Toggle - Desktop */}
+        <div className="absolute top-4 right-4 z-10">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-blue-400 bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <FaSun className="text-yellow-500 w-4 h-4" />
+            ) : (
+              <FaMoon className="text-violet-600 w-4 h-4" />
+            )}
+          </button>
+        </div>
+        {/* Theme Toggle - Desktop */}
+        <div className="absolute top-4 right-4 z-10">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-blue-400 bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <FaSun className="text-yellow-500 w-4 h-4" />
+            ) : (
+              <FaMoon className="text-violet-600 w-4 h-4" />
+            )}
+          </button>
+        </div>
+
         {/* Avatar - larger for desktop */}
         <div className="flex flex-col items-center mb-6">
           <div className="relative mb-4">
@@ -217,7 +251,36 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       </div>
 
       {/* Mobile version - only visible on small to medium screens */}
-      <div className="lg:hidden bg-[var(--color-bg-secondary)] rounded-xl p-3 sm:p-5 flex flex-col items-center shadow-[0_24px_80px_var(--color-shadow)] w-full border border-[var(--color-border-primary)] max-h-fit sticky top-10">
+      <div className="lg:hidden bg-[var(--color-bg-secondary)] rounded-xl p-3 sm:p-5 flex flex-col items-center shadow-[0_24px_80px_var(--color-shadow)] w-full border border-[var(--color-border-primary)] max-h-fit sticky top-10 relative">
+        {/* Theme Toggle - Mobile */}
+        <div className="absolute top-3 right-3 z-10">
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 rounded-full transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-blue-400 bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <FaSun className="text-yellow-500 w-3.5 h-3.5" />
+            ) : (
+              <FaMoon className="text-violet-600 w-3.5 h-3.5" />
+            )}
+          </button>
+        </div>
+        {/* Theme Toggle - Mobile */}
+        <div className="absolute top-3 right-3 z-10">
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 rounded-full transition-colors duration-200 hover:bg-slate-200 dark:hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-blue-400 bg-[var(--color-bg-tertiary)]/50 hover:bg-gradient-to-r from-[var(--color-accent-tertiary)]/20 to-[var(--color-accent-secondary)]/20"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <FaSun className="text-yellow-500 w-3.5 h-3.5" />
+            ) : (
+              <FaMoon className="text-violet-600 w-3.5 h-3.5" />
+            )}
+          </button>
+        </div>
+
         {/* Header section with avatar and basic info */}
         <div className="flex items-center w-full mb-2 sm:mb-3">
           {/* Smaller avatar */}
