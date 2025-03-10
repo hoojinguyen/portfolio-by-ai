@@ -177,8 +177,8 @@ export default function Home() {
       {/* Render animation components conditionally */}
       {animationComponents}
 
-      <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] flex items-center">
-        <div className="max-w-7xl mx-auto w-full">
+      <div className="min-h-screen py-10 px-4 md:px-10 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+        <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
             {/* Left Column - Profile Card */}
             <div className="flex justify-center lg:justify-start">
